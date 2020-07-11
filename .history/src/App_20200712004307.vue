@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-<el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" @select="handleSelect" text-color="#FCDAA9" active-text-color="#f8b600" router>
+<el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" @select="handleSelect" router>
   <img src="./assets/logo.png" width="55" class="logo">
   <img src="./assets/tittle.png" width="270">
   <el-menu-item index="/" class="head1"><strong>首页</strong></el-menu-item>
