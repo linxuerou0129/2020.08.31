@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-<el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" @select="handleSelect" text-color="#FCDAA9" active-text-color="#f8b600" router>
+<el-menu :default-active="$route.path" mode="horizontal" @select="handleSelect" text-color="#FCDAA9" active-text-color="#f8b600" router>
   <img src="./assets/logo.png" width="55" class="logo">
   <img src="./assets/tittle.png" width="270">
   <el-menu-item index="/" class="head1"><strong>首页</strong></el-menu-item>
@@ -53,10 +53,10 @@
       <el-input v-model="formZhuce.email"></el-input>
       <el-button size="mini" @click="submitEmail" round>获取验证码</el-button>
     </el-form-item>
-    <el-form-item label="验证码" prop="check">
+    <el-form-item label="验证码">
       <el-input v-model="formZhuce.check"></el-input>
     </el-form-item>
-    <el-form-item label="用户昵称" prop="name">
+    <el-form-item label="用户昵称">
       <el-input v-model="formZhuce.name"></el-input>
     </el-form-item>
     <el-form-item label="密码" prop="pass">
@@ -199,7 +199,7 @@ export default {
         circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
         activeIndex: '1',
         activeIndex2: '1',
-        login:true,
+        login:false,
         dialogFormVisible:false,
         loginFormShow:false,
         setFormShow:false,
@@ -221,15 +221,7 @@ export default {
           ],
           checkPass: [
             { validator: validatePass2, trigger: 'blur' }
-          ],
-          check:[
-            { required: true, message: '请输入验证码', trigger: 'blur'},
-            { min: 4, max: 4, message: '长度为4个字符', trigger: 'blur' }
-          ],
-          name:[
-            { required: true, message: '请输入用户昵称', trigger: 'blur' },
-            { min: 4, max: 20, message: '长度在 4 到 20 个字符', trigger: 'blur' }
-          ],
+          ]
         }
       };
     },
@@ -256,6 +248,13 @@ export default {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
+            if(this.formZhuce.name==''||this.formZhuce.check==''||this.imageUrl==''){
+              this.$message({
+                    message: '请检查是否填写完整',
+                    type: 'warning'
+                });
+            }
+            else{
               /*axios.post('http://47.107.243.207/api/register', {
                 register_email: this.formZhuce.email,
                 register_name:this.formZhuce.name,
@@ -275,7 +274,8 @@ export default {
             })
             .catch(function (error) {
               console.log(error);
-            });*/  
+            });*/
+            }
           } 
           else {
             console.log('error submit!!');

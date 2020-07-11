@@ -1,8 +1,6 @@
 <template>
   <div class="content">
-    <el-card>
-      
-    </el-card>
+    <h1>This is an about page</h1>
   </div>
 </template>
 
@@ -19,6 +17,6 @@
   
     overflow-x:hidden;
   right: 0;
-  background-color: #EEEEEE;
+  background-color: #fff5d5;
 }
 </style>

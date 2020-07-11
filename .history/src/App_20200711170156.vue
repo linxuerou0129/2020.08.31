@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-<el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" @select="handleSelect" text-color="#FCDAA9" active-text-color="#f8b600" router>
+<el-menu :default-active="$route.path" mode="horizontal" @select="handleSelect" text-color="#FCDAA9" active-text-color="#f8b600" router>
   <img src="./assets/logo.png" width="55" class="logo">
   <img src="./assets/tittle.png" width="270">
   <el-menu-item index="/" class="head1"><strong>首页</strong></el-menu-item>
@@ -199,7 +199,7 @@ export default {
         circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
         activeIndex: '1',
         activeIndex2: '1',
-        login:true,
+        login:false,
         dialogFormVisible:false,
         loginFormShow:false,
         setFormShow:false,

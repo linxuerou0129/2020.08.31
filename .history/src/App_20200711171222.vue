@@ -153,7 +153,7 @@
   left: 3%;
 }
 .head1{
-  position: relative;
+  position: fixed;
   left: 81%;
   font-size: 18px;
 }
@@ -199,7 +199,7 @@ export default {
         circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
         activeIndex: '1',
         activeIndex2: '1',
-        login:true,
+        login:false,
         dialogFormVisible:false,
         loginFormShow:false,
         setFormShow:false,
