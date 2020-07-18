@@ -44,7 +44,7 @@
               </el-form-item>
             </el-form>
           </div>
-          <div class="verticalBar"></div>
+          <el-divider direction="vertical"></el-divider>
           <div class="cardS">
             <p>更改邮箱</p>
             <el-form>
@@ -74,16 +74,6 @@
 </template>
 
 <style scoped>
-.verticalBar {
-  width: 1px;
-  height: 300px;
-  background: #8c939d;
-  display: inline-block;
-  margin-top: 31px;
-  vertical-align: top;
-  margin-right: 29px;
-  margin-left: 30px;
-}
 .cardS{
   position: relative;
   width: 45%;

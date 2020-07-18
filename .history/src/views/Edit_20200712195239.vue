@@ -44,7 +44,7 @@
               </el-form-item>
             </el-form>
           </div>
-          <div class="verticalBar"></div>
+          <el-divider direction="vertical"></el-divider>
           <div class="cardS">
             <p>更改邮箱</p>
             <el-form>
@@ -56,8 +56,8 @@
                 { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
               ]"
             >
-                <el-input v-model="forgetIt.email"></el-input>
-                <el-button size="mini" @click="submitEmail" round>获取验证码</el-button>
+              <el-input v-model="forgetIt.email"></el-input>
+              <el-button size="mini" @click="submitEmail" round>获取验证码</el-button>
             </el-form-item>
             <el-form-item label="验证码" prop="check">
               <el-input v-model="forgetIt.check"></el-input>
@@ -74,16 +74,6 @@
 </template>
 
 <style scoped>
-.verticalBar {
-  width: 1px;
-  height: 300px;
-  background: #8c939d;
-  display: inline-block;
-  margin-top: 31px;
-  vertical-align: top;
-  margin-right: 29px;
-  margin-left: 30px;
-}
 .cardS{
   position: relative;
   width: 45%;

@@ -151,7 +151,7 @@ export default {
   
     overflow-x:hidden;
   right: 0;
-  background-color:#FAFAFA;
+  background-color:250,250,250;
 }
 .box-card {
   position: relative;

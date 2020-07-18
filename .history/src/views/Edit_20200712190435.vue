@@ -30,7 +30,7 @@
             </el-form>
         </el-tab-pane>
         <el-tab-pane label="帐号安全设置" class="safeSetting">
-          <div class="cardS">
+          <div>
             <p>更改密码</p>
             <el-form :model="forgetIt"  ref="forgetIt" status-icon :rules="rules">
               <el-form-item label="新密码" prop="pass">
@@ -40,32 +40,13 @@
                 <el-input type="password" v-model="forgetIt.checkPass" autocomplete="off"></el-input>
               </el-form-item>
               <el-form-item>
-                <el-button type="primary" @click="submitForm('forgetIt')">更改密码</el-button>
+                <el-button type="primary" @click="submitForm('forgetIt')">保存修改</el-button>
               </el-form-item>
             </el-form>
           </div>
-          <div class="verticalBar"></div>
-          <div class="cardS">
+          <el-divider direction="vertical"></el-divider>
+          <div>
             <p>更改邮箱</p>
-            <el-form>
-            <el-form-item
-              prop="email"
-              label="新邮箱"
-              :rules="[
-                { required: true, message: '请输入邮箱地址', trigger: 'blur' },
-                { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
-              ]"
-            >
-                <el-input v-model="forgetIt.email"></el-input>
-                <el-button size="mini" @click="submitEmail" round>获取验证码</el-button>
-            </el-form-item>
-            <el-form-item label="验证码" prop="check">
-              <el-input v-model="forgetIt.check"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="submitForm('forgetIt')">更改邮箱</el-button>
-            </el-form-item>
-            </el-form>
           </div>
         </el-tab-pane>
       </el-tabs>
@@ -74,20 +55,6 @@
 </template>
 
 <style scoped>
-.verticalBar {
-  width: 1px;
-  height: 300px;
-  background: #8c939d;
-  display: inline-block;
-  margin-top: 31px;
-  vertical-align: top;
-  margin-right: 29px;
-  margin-left: 30px;
-}
-.cardS{
-  position: relative;
-  width: 45%;
-}
 .safeSetting{
   display: -webkit-flex; /* Safari */
   display: flex;
@@ -166,10 +133,8 @@ export default {
       },
       imageUrl:"",
       forgetIt: {
-          email:'',
           pass:'',
           checkPass:'',
-          check:''
         },
         rules: {
           pass: [
@@ -243,34 +208,6 @@ export default {
             return false;
           }
         });
-      },
-      submitEmail(){
-        var reg = /^[a-zA-Z0-9]+@[a-z0-9]{2,5}\.[a-z]{2,3}(\.[a-z]{2,3})?$/;
-        var result = reg.test(this.forgetIt.email);
-        if(this.forgetIt.email==''){
-          this.$message({
-                    message: '邮箱不可为空',
-                    type: 'warning'
-                });
-        }
-        else if(!result){
-          this.$message({
-                    message: '邮箱输入有误',
-                    type: 'warning'
-                });
-        }
-        else{
-          /*axios.post('http://47.107.243.207/api/send_email', {
-              register_email: this.formZhuce.email
-            })
-          .then((response)=> {
-            console.log(response.data);
-            Message.success('发送成功，请注意查收')
-          })
-          .catch(function (error) {
-            console.log(error);
-          });*/
-        }
       },
   }
 }

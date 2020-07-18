@@ -77,7 +77,7 @@
 .verticalBar {
   width: 1px;
   height: 300px;
-  background: #8c939d;
+  background: gray;
   display: inline-block;
   margin-top: 31px;
   vertical-align: top;

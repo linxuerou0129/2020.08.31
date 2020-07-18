@@ -9,10 +9,8 @@
       <el-avatar :src="circleUrl"></el-avatar>
     </template>
     <el-menu-item index="/Edit">
+      <!--（个人信息设置与账号设置）-->
       我的设置
-    </el-menu-item>
-    <el-menu-item index="/Publish">
-      发布游记
     </el-menu-item>
     <el-menu-item index="/Published">
       我的发布
@@ -32,9 +30,11 @@
       <strong>登录/注册</strong>
     </template>
     <el-menu-item @click="dialogFormVisible = true">
+      <!--<el-button type="text" @click="setFormShow = true">修改信息</el-button>-->
       注册
     </el-menu-item>
     <el-menu-item @click="loginFormShow = true">
+      <!--<el-button type="text" @click="logout">退出</el-button>-->
       登录
     </el-menu-item>
   </el-submenu>
@@ -92,6 +92,28 @@
     <el-form-item>
       <el-button type="primary" @click="loginIt('formLogin')">登录</el-button>
       <el-button @click="loginFormShow= false">取消</el-button>
+    </el-form-item>
+  </el-form>
+</el-dialog>
+<el-dialog title="修改信息" :visible.sync="setFormShow">
+  <el-form status-icon >
+    <el-form-item label="用户昵称">
+      <el-input v-model="formZhuce.name"></el-input>
+    </el-form-item>
+    <p>修改头像</p>
+    <el-upload
+      class="avatar-uploader"
+      action="http://47.107.243.207/api/upload"
+      :show-file-list="false"
+      :on-success="handleAvatarSuccess"
+      :before-upload="beforeAvatarUpload">
+      <img v-if="imageUrl" :src="imageUrl" class="avatar">
+      <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+    </el-upload>
+    <br>
+    <el-form-item>
+      <el-button type="primary" @click="save">保存修改</el-button>
+      <el-button @click="setFormShow= false">取消</el-button>
     </el-form-item>
   </el-form>
 </el-dialog>
@@ -214,6 +236,22 @@ export default {
     methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
+      },
+      handleAvatarSuccess(res) {
+        console.log(res);
+        this.imageUrl = "http://47.107.243.207/api"+res.icon;
+      },
+      beforeAvatarUpload(file) {
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
       },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {

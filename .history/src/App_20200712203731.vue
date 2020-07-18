@@ -9,10 +9,8 @@
       <el-avatar :src="circleUrl"></el-avatar>
     </template>
     <el-menu-item index="/Edit">
+      <!--（个人信息设置与账号设置）-->
       我的设置
-    </el-menu-item>
-    <el-menu-item index="/Publish">
-      发布游记
     </el-menu-item>
     <el-menu-item index="/Published">
       我的发布
@@ -177,7 +175,7 @@ export default {
         circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
         activeIndex: '1',
         activeIndex2: '1',
-        login:true,
+        login:false,
         dialogFormVisible:false,
         loginFormShow:false,
         setFormShow:false,

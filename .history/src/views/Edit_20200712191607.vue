@@ -30,7 +30,7 @@
             </el-form>
         </el-tab-pane>
         <el-tab-pane label="帐号安全设置" class="safeSetting">
-          <div class="cardS">
+          <div>
             <p>更改密码</p>
             <el-form :model="forgetIt"  ref="forgetIt" status-icon :rules="rules">
               <el-form-item label="新密码" prop="pass">
@@ -44,8 +44,8 @@
               </el-form-item>
             </el-form>
           </div>
-          <div class="verticalBar"></div>
-          <div class="cardS">
+          <el-divider direction="vertical"></el-divider>
+          <div>
             <p>更改邮箱</p>
             <el-form>
             <el-form-item
@@ -56,8 +56,8 @@
                 { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
               ]"
             >
-                <el-input v-model="forgetIt.email"></el-input>
-                <el-button size="mini" @click="submitEmail" round>获取验证码</el-button>
+              <el-input v-model="forgetIt.email"></el-input>
+              <el-button size="mini" @click="submitEmail" round>获取验证码</el-button>
             </el-form-item>
             <el-form-item label="验证码" prop="check">
               <el-input v-model="forgetIt.check"></el-input>
@@ -74,20 +74,6 @@
 </template>
 
 <style scoped>
-.verticalBar {
-  width: 1px;
-  height: 300px;
-  background: #8c939d;
-  display: inline-block;
-  margin-top: 31px;
-  vertical-align: top;
-  margin-right: 29px;
-  margin-left: 30px;
-}
-.cardS{
-  position: relative;
-  width: 45%;
-}
 .safeSetting{
   display: -webkit-flex; /* Safari */
   display: flex;

@@ -9,10 +9,8 @@
       <el-avatar :src="circleUrl"></el-avatar>
     </template>
     <el-menu-item index="/Edit">
+      <!--（个人信息设置与账号设置）-->
       我的设置
-    </el-menu-item>
-    <el-menu-item index="/Publish">
-      发布游记
     </el-menu-item>
     <el-menu-item index="/Published">
       我的发布
@@ -32,9 +30,11 @@
       <strong>登录/注册</strong>
     </template>
     <el-menu-item @click="dialogFormVisible = true">
+      <!--<el-button type="text" @click="setFormShow = true">修改信息</el-button>-->
       注册
     </el-menu-item>
     <el-menu-item @click="loginFormShow = true">
+      <!--<el-button type="text" @click="logout">退出</el-button>-->
       登录
     </el-menu-item>
   </el-submenu>
@@ -214,6 +214,22 @@ export default {
     methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
+      },
+      handleAvatarSuccess(res) {
+        console.log(res);
+        this.imageUrl = "http://47.107.243.207/api"+res.icon;
+      },
+      beforeAvatarUpload(file) {
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
       },
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {

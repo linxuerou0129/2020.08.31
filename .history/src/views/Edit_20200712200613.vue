@@ -75,9 +75,9 @@
 
 <style scoped>
 .verticalBar {
-  width: 1px;
+  width: 2px;
   height: 300px;
-  background: #8c939d;
+  background: red;
   display: inline-block;
   margin-top: 31px;
   vertical-align: top;
