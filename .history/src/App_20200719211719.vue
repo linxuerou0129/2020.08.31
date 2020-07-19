@@ -27,7 +27,7 @@
       退出
     </el-menu-item>
   </el-submenu>
-  <el-submenu v-if="!login"  class="head4" index=1>
+  <el-submenu v-if="!login"  class="head4">
     <template slot="title">
       <strong>登录/注册</strong>
     </template>
@@ -174,7 +174,7 @@ export default {
         }
       };
       return {
-        circleUrl: "http://47.107.243.207/api/static/touxiang.png",
+        circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
         activeIndex: '1',
         activeIndex2: '1',
         login:false,
@@ -206,7 +206,7 @@ export default {
           ],
           name:[
             { required: true, message: '请输入用户昵称', trigger: 'blur' },
-            { min: 4, max: 16, message: '长度在 4 到 16 个字符', trigger: 'blur' }
+            { min: 4, max: 20, message: '长度在 4 到 20 个字符', trigger: 'blur' }
           ],
         }
       };
@@ -261,8 +261,7 @@ export default {
         }
         else{
           axios.post('http://47.107.243.207/api/send_email', {
-              email: this.formZhuce.email,
-              type:6
+              register_email: this.formZhuce.email
             })
           .then((response)=> {
             console.log(response.data);
@@ -276,7 +275,7 @@ export default {
       loginIt(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            axios.post('http://47.107.243.207/api/login', {
+            /*axios.post('http://47.107.243.207/api/login', {
                 login_id: this.formLogin.email,
                 login_password:this.formLogin.pass
               })
@@ -293,7 +292,7 @@ export default {
             })
             .catch(function (error) {
               console.log(error);
-            });
+            });*/
           } 
           else {
             console.log('error submit!!');
@@ -302,7 +301,7 @@ export default {
         });
       },
       logout(){
-        axios.get('http://47.107.243.207/api/logout')
+        /*axios.get('http://47.107.243.207/api/logout')
             .then((response)=>{
               console.log(response.data);
               this.login=false;
@@ -310,7 +309,7 @@ export default {
             })
             .catch(function(error){
                 console.log(error);
-            });
+            });*/
       },
       save() {
             /*axios.post('http://47.107.243.207/api/edit_user_info', {
@@ -332,17 +331,17 @@ export default {
     watch:{
       login:function(val,oldVal){
            if(val==true){
-             axios({
+             /*axios({
               url:'http://47.107.243.207/api/get_user_info',
 	            method: 'get'
             })
             .then((response)=>{
                  console.log(response.data);
-                this.circleUrl="http://47.107.243.207/api"+response.data.头像;
+                this.circleUrl=response.data.头像;
             })
             .catch(function(error){
                 console.log(error);
-            });
+            });*/
            }
         }
     },
@@ -354,8 +353,7 @@ export default {
             .then((response)=>{
                  console.log(response.data);
                 this.login=true
-                this.circleUrl="http://47.107.243.207/api"+response.data.头像;
-                console.log("http://47.107.243.207/api"+response.data.头像)
+                this.circleUrl=response.data.头像;
             })
             .catch(function(error){
                 console.log(error);

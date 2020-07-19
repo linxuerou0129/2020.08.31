@@ -354,7 +354,7 @@ export default {
             .then((response)=>{
                  console.log(response.data);
                 this.login=true
-                this.circleUrl="http://47.107.243.207/api"+response.data.头像;
+                //this.circleUrl="http://47.107.243.207/api"+response.data.头像;
                 console.log("http://47.107.243.207/api"+response.data.头像)
             })
             .catch(function(error){

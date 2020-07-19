@@ -174,7 +174,7 @@ export default {
         }
       };
       return {
-        circleUrl: "http://47.107.243.207/api/static/touxiang.png",
+        circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
         activeIndex: '1',
         activeIndex2: '1',
         login:false,
@@ -206,7 +206,7 @@ export default {
           ],
           name:[
             { required: true, message: '请输入用户昵称', trigger: 'blur' },
-            { min: 4, max: 16, message: '长度在 4 到 16 个字符', trigger: 'blur' }
+            { min: 4, max: 16, message: '长度在 4 到 8 个字符', trigger: 'blur' }
           ],
         }
       };
@@ -302,7 +302,7 @@ export default {
         });
       },
       logout(){
-        axios.get('http://47.107.243.207/api/logout')
+        /*axios.get('http://47.107.243.207/api/logout')
             .then((response)=>{
               console.log(response.data);
               this.login=false;
@@ -310,7 +310,7 @@ export default {
             })
             .catch(function(error){
                 console.log(error);
-            });
+            });*/
       },
       save() {
             /*axios.post('http://47.107.243.207/api/edit_user_info', {
@@ -338,7 +338,7 @@ export default {
             })
             .then((response)=>{
                  console.log(response.data);
-                this.circleUrl="http://47.107.243.207/api"+response.data.头像;
+                this.circleUrl=response.data.头像;
             })
             .catch(function(error){
                 console.log(error);
@@ -354,8 +354,7 @@ export default {
             .then((response)=>{
                  console.log(response.data);
                 this.login=true
-                this.circleUrl="http://47.107.243.207/api"+response.data.头像;
-                console.log("http://47.107.243.207/api"+response.data.头像)
+                this.circleUrl=response.data.头像;
             })
             .catch(function(error){
                 console.log(error);

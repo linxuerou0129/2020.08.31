@@ -338,7 +338,7 @@ export default {
             })
             .then((response)=>{
                  console.log(response.data);
-                this.circleUrl="http://47.107.243.207/api"+response.data.头像;
+                this.circleUrl=response.data.头像;
             })
             .catch(function(error){
                 console.log(error);
