@@ -138,8 +138,6 @@
 </style>
 
 <script>
-import { Message } from 'element-ui';
-import axios from 'axios'
 export default {
   data(){
     var validatePass = (rule, value, callback) => {
@@ -166,7 +164,6 @@ export default {
         name:"",
         sex:"保密"
       },
-      reUrl:"",
       imageUrl:"",
       forgetIt: {
           email:'',
@@ -187,7 +184,6 @@ export default {
   methods:{
     handleAvatarSuccess(res) {
         console.log(res);
-        this.reUrl=res.icon;
         this.imageUrl = "http://47.107.243.207/api"+res.icon;
       },
       beforeAvatarUpload(file) {
@@ -203,19 +199,20 @@ export default {
         return isJPG && isLt2M;
       },
       save() {
-            axios.post('http://47.107.243.207/api/edit_user_info', {
-                edit_name:this.edit.name,
-                edit_file:this.reUrl,
-                edit_sex:this.edit.sex
+            /*axios.post('http://47.107.243.207/api/edit_user_info', {
+                edit_name:this.formZhuce.name,
+                edit_file:this.imageUrl,
               })
             .then((response) =>{
               console.log(response.data);
-              location. reload();
-              Message.success('修改成功');
+                this.circleUrl=response.data.头像
+                this.setFormShow= false;
+                Message.success('修改成功');
+                location. reload();
             })
             .catch(function (error) {
               console.log(error);
-            });
+            });*/
           } ,
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
@@ -276,14 +273,13 @@ export default {
         }
       },
   },
-   created(){
+   mounted(){
       axios({
             url:'http://47.107.243.207/api/get_user_info',
 	            method: 'get'
             })
             .then((response)=>{
                  console.log(response.data);
-                 this.reUrl=response.data.头像;
                  this.imageUrl="http://47.107.243.207/api"+response.data.头像;
                  this.edit.name=response.data.用户名;
                  this.edit.sex=response.data.性别;

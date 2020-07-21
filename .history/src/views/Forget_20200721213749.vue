@@ -108,7 +108,6 @@ export default {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-              console.log(this.forgetIt.email+this.forgetIt.pass+this.forgetIt.check)
               axios.post('http://47.107.243.207/api/fotget_password', {
                 fotget_email: this.forgetIt.email,
                 fotget_password:this.forgetIt.pass,

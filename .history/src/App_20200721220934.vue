@@ -177,7 +177,7 @@ export default {
         circleUrl: "http://47.107.243.207/api/static/touxiang.png",
         activeIndex: '1',
         activeIndex2: '1',
-        login:false,
+        login:true,
         dialogFormVisible:false,
         loginFormShow:false,
         setFormShow:false,
@@ -286,7 +286,6 @@ export default {
                 this.loginFormShow=false;
                 this.login=true;
                 Message.success('登录成功');
-                location.href="/";
               }
               else{
                 Message.error('登录失败，请重新登录');
@@ -307,13 +306,28 @@ export default {
             .then((response)=>{
               console.log(response.data);
               this.login=false;
-              location.href="/";
               Message.success('退出成功');
             })
             .catch(function(error){
                 console.log(error);
             });
-      }, 
+      },
+      save() {
+            /*axios.post('http://47.107.243.207/api/edit_user_info', {
+                edit_name:this.formZhuce.name,
+                edit_file:this.imageUrl,
+              })
+            .then((response) =>{
+              console.log(response.data);
+                this.circleUrl=response.data.头像
+                this.setFormShow= false;
+                Message.success('修改成功');
+                location. reload();
+            })
+            .catch(function (error) {
+              console.log(error);
+            });*/
+          } 
     },
     watch:{
       login:function(val,oldVal){

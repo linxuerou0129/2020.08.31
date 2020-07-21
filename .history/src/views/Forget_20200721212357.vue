@@ -108,19 +108,18 @@ export default {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-              console.log(this.forgetIt.email+this.forgetIt.pass+this.forgetIt.check)
-              axios.post('http://47.107.243.207/api/fotget_password', {
-                fotget_email: this.forgetIt.email,
-                fotget_password:this.forgetIt.pass,
-                fotget_code:this.forgetIt.check
+              /*axios.post('http://47.107.243.207/api/register', {
+                register_email: this.formZhuce.email,
+                register_name:this.formZhuce.name,
+                register_password:this.formZhuce.pass,
+                file:this.imageUrl,
+                register_code:this.formZhuce.check
               })
             .then((response) =>{
               console.log(response.data);
               if(response.data.status=="success"){
-                Message.success('修改成功');
-              }
-              else if(response.data.status=="fail"){
-                Message.success('修改失败');
+                this.dialogFormVisible = false;
+                Message.success('注册成功');
               }
               else{
                 Message.error(response.data.status)
@@ -128,7 +127,7 @@ export default {
             })
             .catch(function (error) {
               console.log(error);
-            });
+            });*/  
           } 
           else {
             console.log('error submit!!');

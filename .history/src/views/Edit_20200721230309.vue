@@ -138,7 +138,6 @@
 </style>
 
 <script>
-import { Message } from 'element-ui';
 import axios from 'axios'
 export default {
   data(){
@@ -210,8 +209,8 @@ export default {
               })
             .then((response) =>{
               console.log(response.data);
-              location. reload();
-              Message.success('修改成功');
+                Message.success('修改成功');
+                location. reload();
             })
             .catch(function (error) {
               console.log(error);
