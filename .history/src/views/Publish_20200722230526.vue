@@ -4,7 +4,7 @@
         <img src="../assets/xuhua.jpg" width="100%" height="350" style="opacity:0.3;z-index:9">
         <div  class="addP">
             <img src="../assets/addP.png" width="120">
-            <div style="margin-left:10px">
+            <div>
                 <p class="p1">上传图片</p>
                 <p class="p2">最多可上传九张</p>
             </div>
@@ -14,17 +14,13 @@
 </template>
 
 <style scoped>
-.p2{
-    color: gray;
-}
 .p1{
-    font-size: 25px;
+    font-size: 50px;
 }
 .addP{
     z-index: 999;
     position: absolute;
     top: 10%;
-    left: 40%;
     display: -webkit-flex; /* Safari */
   display: flex;
   flex-direction: row;

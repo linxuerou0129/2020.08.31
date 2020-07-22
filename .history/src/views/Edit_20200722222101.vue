@@ -33,9 +33,9 @@
           <div class="cardS">
             <p>更改密码</p>
             <el-form :model="forgetIt"  ref="forgetIt" status-icon :rules="rules">
-              <el-form-item label="" prop="check">
-                <el-button size="mini" @click="submitEmail" round>验证邮箱</el-button>
+              <el-form-item label="当前邮箱验证码" prop="check">
                 <el-input v-model="forgetIt.check"></el-input>
+                <el-button size="mini" @click="submitEmail" round>获取验证码</el-button>
               </el-form-item>
               <el-form-item label="新密码" prop="pass">
                 <el-input type="password" v-model="forgetIt.pass" autocomplete="off"></el-input>
@@ -261,7 +261,6 @@ export default {
       saveEmail(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            console.log(this.email.email+this.email.check);
               axios.post('http://47.107.243.207/api/change_email', {
                 change_email: this.email.email,
                 change_code:this.email.check
@@ -271,6 +270,9 @@ export default {
               if(response.data.status=="success"){
                 Message.success('修改成功');
                 this.forgetIt.email=this.email.email;
+              }
+              else if(response.data.status=="fail"){
+                Message.success('修改失败');
               }
               else{
                 Message.error(response.data.status)
@@ -287,6 +289,21 @@ export default {
         });
       },
       submitEmail(){
+        var reg = /^[a-zA-Z0-9]+@[a-z0-9]{2,5}\.[a-z]{2,3}(\.[a-z]{2,3})?$/;
+        var result = reg.test(this.forgetIt.email);
+        if(this.forgetIt.email==''){
+          this.$message({
+                    message: '邮箱不可为空',
+                    type: 'warning'
+                });
+        }
+        else if(!result){
+          this.$message({
+                    message: '邮箱输入有误',
+                    type: 'warning'
+                });
+        }
+        else{
           axios.post('http://47.107.243.207/api/send_email', {
               email: this.forgetIt.email,
               type:1
@@ -298,10 +315,26 @@ export default {
           .catch(function (error) {
             console.log(error);
           });
+        }
       },
       submitEmailT(){
+        var reg = /^[a-zA-Z0-9]+@[a-z0-9]{2,5}\.[a-z]{2,3}(\.[a-z]{2,3})?$/;
+        var result = reg.test(this.forgetIt.email);
+        if(this.forgetIt.email==''){
+          this.$message({
+                    message: '邮箱不可为空',
+                    type: 'warning'
+                });
+        }
+        else if(!result){
+          this.$message({
+                    message: '邮箱输入有误',
+                    type: 'warning'
+                });
+        }
+        else{
           axios.post('http://47.107.243.207/api/send_email', {
-              email: this.forgetIt.email,
+              email: this.email.email,
               type:2
             })
           .then((response)=> {
@@ -311,6 +344,7 @@ export default {
           .catch(function (error) {
             console.log(error);
           });
+        }
       },
   },
    created(){

@@ -33,9 +33,9 @@
           <div class="cardS">
             <p>更改密码</p>
             <el-form :model="forgetIt"  ref="forgetIt" status-icon :rules="rules">
-              <el-form-item label="" prop="check">
-                <el-button size="mini" @click="submitEmail" round>验证邮箱</el-button>
+              <el-form-item label="当前邮箱验证码" prop="check">
                 <el-input v-model="forgetIt.check"></el-input>
+                <el-button size="mini" @click="submitEmail" round>获取验证码</el-button>
               </el-form-item>
               <el-form-item label="新密码" prop="pass">
                 <el-input type="password" v-model="forgetIt.pass" autocomplete="off"></el-input>

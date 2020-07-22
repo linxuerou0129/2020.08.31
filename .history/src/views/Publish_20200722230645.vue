@@ -24,7 +24,6 @@
     z-index: 999;
     position: absolute;
     top: 10%;
-    left: 40%;
     display: -webkit-flex; /* Safari */
   display: flex;
   flex-direction: row;

@@ -34,7 +34,7 @@
             <p>更改密码</p>
             <el-form :model="forgetIt"  ref="forgetIt" status-icon :rules="rules">
               <el-form-item label="" prop="check">
-                <el-button size="mini" @click="submitEmail" round>验证邮箱</el-button>
+                <el-button size="mini" @click="submitEmail" round>当前邮箱验证码</el-button>
                 <el-input v-model="forgetIt.check"></el-input>
               </el-form-item>
               <el-form-item label="新密码" prop="pass">
