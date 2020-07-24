@@ -266,11 +266,11 @@ export default {
       saveEmail(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            console.log(this.email.email+this.email.checkT+this.email.check);
+            console.log(this.email.email+this.email.check);
               axios.post('http://47.107.243.207/api/change_email', {
                 change_email: this.email.email,
-                change_code:this.email.checkT,
-                change_code_new:this.email.check
+                change_code:this.email.check,
+                change_code_new:this.email.checkT
               })
             .then((response) =>{
               console.log(response.data);

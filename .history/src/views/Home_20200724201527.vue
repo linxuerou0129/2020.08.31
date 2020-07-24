@@ -41,6 +41,7 @@ export default {
   width: 90%;
   left: 5%;
   top: 18%;
+  opacity: 100%;
 }
 .search{
   position:fixed;

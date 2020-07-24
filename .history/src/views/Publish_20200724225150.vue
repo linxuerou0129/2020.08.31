@@ -67,6 +67,5 @@ export default {
   
     overflow-x:hidden;
   right: 0;
-  background-color: #FAFAFA;
 }
 </style>

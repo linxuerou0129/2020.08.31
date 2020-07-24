@@ -18,11 +18,7 @@
     </el-carousel>
     </div>
     <div class="search">
-      <el-input
-        placeholder="请输入内容"
-        v-model="input"
-        clearable class="input">
-      </el-input>
+
     </div>
   </div>
 </template>
@@ -37,21 +33,14 @@ export default {
 </script>
 
 <style scoped>
-.input{
-  width: 90%;
-  left: 5%;
-  top: 18%;
-}
 .search{
   position:fixed;
   height: 10%;
-  width: 50%;
+  width: 80%;
   background-color: black;
   z-index: 9999;
   opacity: 50%;
-  top: 80%;
-  left: 25%;
-  border-radius: 5px;
+  top: 30%;
 }
 .photo{
   z-index: 9;

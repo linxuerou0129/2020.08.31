@@ -38,9 +38,7 @@ export default {
 
 <style scoped>
 .input{
-  width: 90%;
-  left: 5%;
-  top: 18%;
+  width: 905;
 }
 .search{
   position:fixed;
@@ -49,9 +47,8 @@ export default {
   background-color: black;
   z-index: 9999;
   opacity: 50%;
-  top: 80%;
+  top: 30%;
   left: 25%;
-  border-radius: 5px;
 }
 .photo{
   z-index: 9;

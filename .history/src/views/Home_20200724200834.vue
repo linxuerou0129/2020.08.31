@@ -19,10 +19,11 @@
     </div>
     <div class="search">
       <el-input
-        placeholder="请输入内容"
-        v-model="input"
-        clearable class="input">
-      </el-input>
+  placeholder="请输入内容"
+  v-model="input"
+  clearable>
+</el-input>
+
     </div>
   </div>
 </template>
@@ -37,11 +38,6 @@ export default {
 </script>
 
 <style scoped>
-.input{
-  width: 90%;
-  left: 5%;
-  top: 18%;
-}
 .search{
   position:fixed;
   height: 10%;
@@ -49,9 +45,8 @@ export default {
   background-color: black;
   z-index: 9999;
   opacity: 50%;
-  top: 80%;
+  top: 30%;
   left: 25%;
-  border-radius: 5px;
 }
 .photo{
   z-index: 9;

@@ -1,7 +1,7 @@
 <template>
 <div class="content">
     <div class="head">
-        <img src="../assets/xuhua.jpg" width="100%" height="300" style="opacity:0.3;z-index:9">
+        <img src="../assets/xuhua.jpg" width="100%" height="350" style="opacity:0.3;z-index:9">
         <div  class="addP">
             <img src="../assets/addP.png" width="120">
             <div style="margin-left:10px">
@@ -9,15 +9,11 @@
                 <p class="p2">最多可上传九张</p>
             </div>
         </div>
-        <div class="input">
-            <el-input
-            placeholder="请输入标题"
-            v-model="tittle"
-            maxlength="40"
-            show-word-limit
-            clearable>
-            </el-input>
-        </div>
+        <el-input
+        placeholder="请输入标题"
+        v-model="tittle"
+        clearable class="input">
+        </el-input>
     </div>
 </div>
 </template>
@@ -37,8 +33,8 @@ export default {
     z-index: 999;
     position: absolute;
     width: 80%;
-    top: 40%;
-    left: 11%;
+    height: 30px;
+    top: 20%;
 }
 .p2{
     color: gray;
@@ -49,7 +45,7 @@ export default {
 .addP{
     z-index: 999;
     position: absolute;
-    top: 12%;
+    top: 10%;
     left: 40%;
     display: -webkit-flex; /* Safari */
   display: flex;

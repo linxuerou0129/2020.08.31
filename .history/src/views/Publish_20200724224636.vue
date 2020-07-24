@@ -13,8 +13,6 @@
             <el-input
             placeholder="请输入标题"
             v-model="tittle"
-            maxlength="40"
-            show-word-limit
             clearable>
             </el-input>
         </div>
@@ -38,7 +36,7 @@ export default {
     position: absolute;
     width: 80%;
     top: 40%;
-    left: 11%;
+    left: 12%;
 }
 .p2{
     color: gray;

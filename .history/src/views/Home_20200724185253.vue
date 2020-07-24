@@ -1,7 +1,6 @@
 <template>
   <div class="content">
-    <div class="carousel">
-      <el-carousel :interval="5000" direction="vertical" height="500px">
+    <el-carousel class="carousel" :interval="5000" direction="vertical" height="500px">
       <el-carousel-item>
         <div class="head">
           <strong>放下偏见，原来你是宝藏杭州（附杭州15个小众打卡景点）</strong>
@@ -16,13 +15,8 @@
       <el-carousel-item>
       </el-carousel-item>
     </el-carousel>
-    </div>
     <div class="search">
-      <el-input
-        placeholder="请输入内容"
-        v-model="input"
-        clearable class="input">
-      </el-input>
+
     </div>
   </div>
 </template>
@@ -37,21 +31,11 @@ export default {
 </script>
 
 <style scoped>
-.input{
-  width: 90%;
-  left: 5%;
-  top: 18%;
-}
 .search{
-  position:fixed;
-  height: 10%;
-  width: 50%;
+  height: 100px;
   background-color: black;
   z-index: 9999;
   opacity: 50%;
-  top: 80%;
-  left: 25%;
-  border-radius: 5px;
 }
 .photo{
   z-index: 9;

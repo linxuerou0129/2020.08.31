@@ -49,7 +49,7 @@ export default {
   background-color: black;
   z-index: 9999;
   opacity: 50%;
-  top: 80%;
+  top: 30%;
   left: 25%;
   border-radius: 5px;
 }
