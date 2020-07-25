@@ -10,7 +10,7 @@
         <img class="photo" src="../assets/test1.jpg">
       </el-carousel-item>
       <el-carousel-item>
-        <img class="photo" src="../assets/1.png">
+        <img class="photo" src="../assets/1.PNG">
       </el-carousel-item>
       <el-carousel-item>
       </el-carousel-item>
@@ -56,10 +56,8 @@ export default {
 }
 .photo{
   z-index: 9;
-  width: auto;
+  width: 100%;
   height: 100%;
-  display: table;
-            margin: 0 auto;
 }
 .head{
   z-index: 999;

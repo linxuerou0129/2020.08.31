@@ -21,7 +21,7 @@
     </div>
     <el-dialog title="上传图片" :visible.sync="showDialog">
         <el-upload
-  action="http://47.107.243.207/api/upload"
+  action="https://jsonplaceholder.typicode.com/posts/"
   list-type="picture-card"
   :on-preview="handlePictureCardPreview"
   :on-remove="handleRemove">

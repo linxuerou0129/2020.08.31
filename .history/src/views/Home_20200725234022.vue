@@ -56,10 +56,8 @@ export default {
 }
 .photo{
   z-index: 9;
-  width: auto;
+  width: 100%;
   height: 100%;
-  display: table;
-            margin: 0 auto;
 }
 .head{
   z-index: 999;

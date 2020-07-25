@@ -58,8 +58,6 @@ export default {
   z-index: 9;
   width: auto;
   height: 100%;
-  display: table;
-            margin: 0 auto;
 }
 .head{
   z-index: 999;
