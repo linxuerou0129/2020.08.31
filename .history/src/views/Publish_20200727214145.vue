@@ -19,21 +19,27 @@
             </el-input>
         </div>
     </div>
-  <el-dialog title="上传图片" :visible.sync="showDialog">
-    <el-upload
-      action="http://47.107.243.207/api/upload"
-      list-type="picture-card"
-      :on-preview="handlePictureCardPreview"
-      :on-remove="handleRemove"
-      :on-success="uploadSuccess"
-      :limit="9"
-      :on-exceed="handleExceed">
-      <i class="el-icon-plus"></i>
-    </el-upload>
-    <el-dialog :visible.sync="dialogVisible" title="预览/添加备注">
-      <img width="100%" :src="dialogImageUrl" alt="">
-    </el-dialog>
-  </el-dialog>
+    <el-dialog title="上传图片" :visible.sync="showDialog">
+      <el-upload
+  action="https://jsonplaceholder.typicode.com/posts/"
+  list-type="picture-card"
+  :on-preview="handlePictureCardPreview"
+  :on-remove="handleRemove"
+  :on-success="uploadSuccess"
+  :limit="9">
+  <i class="el-icon-plus"></i>
+</el-upload>
+<el-dialog :visible.sync="dialogVisible" title="预览/添加备注">
+  <div 
+            style="display: -webkit-flex; 
+            /* Safari */display: 
+            flex;flex-direction: row;">
+                <el-input v-model="input" placeholder="请输入图片备注" style="margin-right:10px"></el-input>
+                <el-button type="primary">确定</el-button>
+            </div>
+  <img width="100%" :src="dialogImageUrl" alt="">
+</el-dialog>
+</el-dialog>
 </div>
 </template>
 
@@ -46,29 +52,28 @@ export default {
             dialogImageUrl: '',
             dialogVisible: false,
             showEdit:false,
+            input:'',
             image: [],
-            fileList:{}
         }
     },
     methods:{
+        updateImg(){
+
+        },
       handleRemove(file, fileList) {
         console.log(file, fileList);
-        this.fileList=fileList;
       },
       handlePictureCardPreview(file) {
         this.dialogImageUrl = file.url;
         this.dialogVisible = true;
       },
-      uploadSuccess(res,file,fileList){
-            this.fileList=fileList;
-            console.log(this.fileList);
-      },
-      handleExceed(){
-        this.$message({
-          message: '至多只能上传九张',
-          type: 'warning'
-        });
-      },
+      uploadSuccess(res){
+           this.image.push({
+                image: "http://47.107.243.207/api"+res.icon,
+                remark: ""
+            });
+            console.log(this.image)
+      }
     }
 }
 </script>

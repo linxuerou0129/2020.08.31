@@ -19,21 +19,47 @@
             </el-input>
         </div>
     </div>
-  <el-dialog title="上传图片" :visible.sync="showDialog">
-    <el-upload
-      action="http://47.107.243.207/api/upload"
-      list-type="picture-card"
-      :on-preview="handlePictureCardPreview"
-      :on-remove="handleRemove"
-      :on-success="uploadSuccess"
-      :limit="9"
-      :on-exceed="handleExceed">
-      <i class="el-icon-plus"></i>
-    </el-upload>
-    <el-dialog :visible.sync="dialogVisible" title="预览/添加备注">
-      <img width="100%" :src="dialogImageUrl" alt="">
+    <el-dialog title="上传图片" :visible.sync="showDialog">
+        <el-upload
+  action="http://47.107.243.207/api/upload"
+  list-type="picture-card">
+    <i slot="default" class="el-icon-plus"></i>
+    <div slot="file" slot-scope="{file}">
+      <img
+        class="el-upload-list__item-thumbnail"
+        :src="file.url" alt=""
+      >
+      <span class="el-upload-list__item-actions">
+        <span
+          class="el-upload-list__item-preview"
+          @click="handlePictureCardPreview(file)"
+        >
+          <i class="el-icon-zoom-in"></i>
+        </span>
+        <span
+          v-if="!disabled"
+          class="el-upload-list__item-delete"
+          @click="showEdit=true"
+        >
+          <i class="el-icon-edit"></i>
+        </span>
+        <span
+          v-if="!disabled"
+          class="el-upload-list__item-delete"
+          @click="handleRemove(file)"
+        >
+          <i class="el-icon-delete"></i>
+        </span>
+      </span>
+    </div>
+</el-upload>
+<el-dialog :visible.sync="dialogVisible">
+  <img width="100%" :src="dialogImageUrl" alt="">
+</el-dialog>
+        <el-dialog :visible.sync="showEdit" title="添加备注">
+            <el-input v-model="input" placeholder="请输入图片备注"></el-input>
+        </el-dialog>
     </el-dialog>
-  </el-dialog>
 </div>
 </template>
 
@@ -43,31 +69,23 @@ export default {
         return{
             tittle:'',
             showDialog:false,
-            dialogImageUrl: '',
-            dialogVisible: false,
-            showEdit:false,
-            image: [],
-            fileList:{}
+             dialogImageUrl: '',
+        dialogVisible: false,
+        disabled: false,
+        showEdit:false,
+        input:''
         }
     },
     methods:{
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-        this.fileList=fileList;
+        updateImg(){
+
+        },
+         handleRemove(file) {
+        console.log(file);
       },
       handlePictureCardPreview(file) {
         this.dialogImageUrl = file.url;
         this.dialogVisible = true;
-      },
-      uploadSuccess(res,file,fileList){
-            this.fileList=fileList;
-            console.log(this.fileList);
-      },
-      handleExceed(){
-        this.$message({
-          message: '至多只能上传九张',
-          type: 'warning'
-        });
       },
     }
 }

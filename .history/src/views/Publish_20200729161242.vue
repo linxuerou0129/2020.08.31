@@ -1,6 +1,6 @@
 <template>
 <div class="content">
-    <div class="head">
+    <!--<div class="head">
         <img src="../assets/xuhua.jpg" width="100%" height="300" style="opacity:0.3;z-index:9">
         <div  class="addP" @click="showDialog=true">
             <img src="../assets/addP.png" width="120">
@@ -33,7 +33,7 @@
     <el-dialog :visible.sync="dialogVisible" title="预览/添加备注">
       <img width="100%" :src="dialogImageUrl" alt="">
     </el-dialog>
-  </el-dialog>
+  </el-dialog>-->
 </div>
 </template>
 
