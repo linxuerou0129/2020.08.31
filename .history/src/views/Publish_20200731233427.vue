@@ -62,14 +62,14 @@
           <el-radio v-model="radio" label="0">国内</el-radio>
           <el-radio v-model="radio" label="1">国外</el-radio>
           <div v-if="radio=='1'">
-            <el-select  placeholder="请选择目的地" filterable style="width: 77.9%;margin-top:5%;" v-model="place">
-              <el-option-group v-for="group in country" :key="group.label" :label="group.label">
-                <el-option v-for="item in group.options" :key="item.value" :label="item.label" :value="item.label">
-                    <span style="float: left">{{ item.label }}</span>
-                    <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
-	              </el-option>
-              </el-option-group>
-            </el-select>
+            <el-select  placeholder="请选择国籍" filterable style="width: 77.9%" v-model="place">
+  <el-option-group v-for="group in country" :key="group.label" :label="group.label">
+     <el-option v-for="item in group.options" :key="item.value" :label="item.label" :value="item.label">
+         <span style="float: left">{{ item.label }}</span>
+         <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
+	 </el-option>
+  </el-option-group>
+</el-select>
           </div>
         </div>
       </div>
@@ -111,13 +111,13 @@ export default {
             money:0,
             radio:'0',
             place:'',
-            country:[/*{
-    			　　label: '热门国家',
-    			　　options: [,]
-    		　　},*/{
-    			　　label: '所有国家',
-    			　　options: [
-    			{value:'Angola',label:'安哥拉'},
+            country:[{
+    			label: '热门国家',
+    			options: [{value:'China',label:'中国'},]
+    		},{
+    			label: '所有国家',
+    			options: [
+    			    {value:'Angola',label:'安哥拉'},
 					{value:'Afghanistan',label:'阿富汗'},
 					{value:'Albania',label:'阿尔巴尼亚'},
 					{value:'Algeria',label:'阿尔及利亚'},
@@ -153,6 +153,7 @@ export default {
 					{value:'Central African Republic',label:'中非共和国'},
 					{value:'Chad',label:'乍得'},
 					{value:'Chile',label:'智利'},
+					{value:'China',label:'中国'},
 					{value:'Colombia',label:'哥伦比亚'},
 					{value:'Congo',label:'刚果'},
 					{value:'Cook Is',label:'库克群岛'},
