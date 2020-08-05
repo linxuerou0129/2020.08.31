@@ -347,8 +347,7 @@ export default {
           .then((response)=> {
             console.log(response.data);
             this.$message({
-              message: '发布成功',
-              type: 'success'
+              message: '发布成功'
             });
           })
           .catch(function (error) {

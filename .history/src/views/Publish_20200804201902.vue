@@ -23,7 +23,7 @@
       <div style="width:70%">
         <el-input
           type="textarea"
-          :autosize="{ minRows: 32}"
+          :autosize="{ minRows: 20}"
           placeholder="请输入正文"
           v-model="textarea">
         </el-input>
@@ -72,19 +72,18 @@
             </el-select>
           </div>
 		  <div v-if="radio=='0'">
-			  <v-distpicker :hide-area="true" @province="onChangeProvince" @city="onChangeCity" style="margin-top:5%;"></v-distpicker>
-        <el-select v-model="scenics" filterable placeholder="请选择景点" style="width: 77.9%;margin-top:5%;">
-          <el-option
-            v-for="item in option"
-            :key="item"
-            :value="item">
-          </el-option>
-        </el-select>
+			  <v-distpicker :hide-area="true" @province="onChangeProvince" @city="onChangeCity"></v-distpicker>
+        <el-select v-model="scenics" filterable placeholder="请选择景点">
+    <el-option
+      v-for="item in options"
+      :key="item"
+      :value="item">
+    </el-option>
+  </el-select>
 		  </div>
         </div>
       </div>
     </div>
-  <el-button type="primary" round style="margin-left:42.5%;margin-bottom:5%;width:15%;height:8%" @click="publish">发布游记</el-button>
   <el-dialog title="上传图片" :visible.sync="showDialog">
     <el-upload
       action="http://47.107.243.207/api/upload"
@@ -126,7 +125,7 @@ export default {
             radio:'0',
             place:'',
             scenics:'',
-            option:[],
+            option:['厦门',"泉州"],
             country:[/*{
     			　　label: '热门国家',
     			　　options: [,]
@@ -327,34 +326,6 @@ export default {
         }
     },
     methods:{
-      publish(){
-        for(let i=0;i<this.fileList.length;i++){
-           this.image.push({
-                image:"http://47.107.243.207/api"+this.fileList[i].response.icon
-            });
-        }
-        console.log(this.image);
-        axios.post('http://47.107.243.207/api/publish', {
-                image:this.image,
-                text:this.textarea,
-                title:this.tittle,
-                position:this.place+this.scenics,
-                statr:this.data,
-                days:this.dayNum,
-                people:this.people,
-                pay:this.money+"元"
-            })
-          .then((response)=> {
-            console.log(response.data);
-            this.$message({
-              message: '发布成功',
-              type: 'success'
-            });
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-      },
 	  onChangeProvince(a){
         console.log(a) 
         this.place = a.value
@@ -368,12 +339,11 @@ export default {
             })
           .then((response)=> {
             console.log(response.data);
-            this.option=response.data.scenics;
           })
           .catch(function (error) {
             console.log(error);
           });
-        this.place = this.place+name;
+        this.txt2 = a.value
       },
       querySearch(queryString, cb) {
         var restaurants = this.restaurants;

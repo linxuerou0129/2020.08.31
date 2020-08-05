@@ -334,26 +334,6 @@ export default {
             });
         }
         console.log(this.image);
-        axios.post('http://47.107.243.207/api/publish', {
-                image:this.image,
-                text:this.textarea,
-                title:this.tittle,
-                position:this.place+this.scenics,
-                statr:this.data,
-                days:this.dayNum,
-                people:this.people,
-                pay:this.money+"元"
-            })
-          .then((response)=> {
-            console.log(response.data);
-            this.$message({
-              message: '发布成功',
-              type: 'success'
-            });
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
       },
 	  onChangeProvince(a){
         console.log(a) 

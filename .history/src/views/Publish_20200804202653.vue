@@ -23,7 +23,7 @@
       <div style="width:70%">
         <el-input
           type="textarea"
-          :autosize="{ minRows: 32}"
+          :autosize="{ minRows: 20}"
           placeholder="请输入正文"
           v-model="textarea">
         </el-input>
@@ -84,7 +84,6 @@
         </div>
       </div>
     </div>
-  <el-button type="primary" round style="margin-left:42.5%;margin-bottom:5%;width:15%;height:8%" @click="publish">发布游记</el-button>
   <el-dialog title="上传图片" :visible.sync="showDialog">
     <el-upload
       action="http://47.107.243.207/api/upload"
@@ -327,34 +326,6 @@ export default {
         }
     },
     methods:{
-      publish(){
-        for(let i=0;i<this.fileList.length;i++){
-           this.image.push({
-                image:"http://47.107.243.207/api"+this.fileList[i].response.icon
-            });
-        }
-        console.log(this.image);
-        axios.post('http://47.107.243.207/api/publish', {
-                image:this.image,
-                text:this.textarea,
-                title:this.tittle,
-                position:this.place+this.scenics,
-                statr:this.data,
-                days:this.dayNum,
-                people:this.people,
-                pay:this.money+"元"
-            })
-          .then((response)=> {
-            console.log(response.data);
-            this.$message({
-              message: '发布成功',
-              type: 'success'
-            });
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-      },
 	  onChangeProvince(a){
         console.log(a) 
         this.place = a.value
