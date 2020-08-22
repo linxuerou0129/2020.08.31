@@ -37,10 +37,10 @@
                             flex-direction: row;">
                             <el-image
                             style="width: 390px; height: 130px;background-color: #f5f7fa;"
-                            :src="item.image"
+                            :src="imageUrl"
                             fit="contain">
                             </el-image>
-                            <h4 class="hide">{{item.article_title}}</h4>
+                            <h4 class="hide">第一次去土楼怎么玩第一次去土楼怎么玩（小白必备的福建土楼超详细攻略）哈哈哈哈哈哈哈哈哈哈哈</h4>
                         </div>
                     </el-card>
                 </div>
@@ -51,10 +51,10 @@
         <el-image
         style="width: 160px; height: 160px;border-radius: 50%;"
         :src="imageUrl"
-        fit="fill"></el-image>
+        :fit="fit"></el-image>
     </div>
     
-</div> 
+</div>
 </template>
 
 <script>
@@ -64,7 +64,7 @@ export default {
         return{
             name:"",
             imageUrl:"",
-            comName:[],
+            comName:[]
         }
     },
     methods:{

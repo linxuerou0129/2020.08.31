@@ -27,20 +27,16 @@
                     <el-button style="float: right; padding: 3px 0" type="text" @click="hrefPublish">写游记</el-button>
                 </div>
                 <div>
-                    <el-card 
-                    class="single" 
-                    shadow="hover"
-                    v-for="(item,index) in comName"
-                    :key="index">
+                    <el-card class="single" shadow="hover">
                         <div style="display: -webkit-flex; /* Safari */
                             display: flex;
                             flex-direction: row;">
                             <el-image
                             style="width: 390px; height: 130px;background-color: #f5f7fa;"
-                            :src="item.image"
+                            :src="imageUrl"
                             fit="contain">
                             </el-image>
-                            <h4 class="hide">{{item.article_title}}</h4>
+                            <h4 class="hide">第一次去土楼怎么玩第一次去土楼怎么玩（小白必备的福建土楼超详细攻略）哈哈哈哈哈哈哈哈哈哈哈</h4>
                         </div>
                     </el-card>
                 </div>
@@ -51,10 +47,10 @@
         <el-image
         style="width: 160px; height: 160px;border-radius: 50%;"
         :src="imageUrl"
-        fit="fill"></el-image>
+        :fit="fit"></el-image>
     </div>
     
-</div> 
+</div>
 </template>
 
 <script>
@@ -63,8 +59,7 @@ export default {
     data(){
         return{
             name:"",
-            imageUrl:"",
-            comName:[],
+            imageUrl:""
         }
     },
     methods:{
@@ -87,17 +82,6 @@ export default {
                  console.log(response.data);
                  this.imageUrl="http://47.107.243.207/api"+response.data.头像;
                  this.name=response.data.用户名;
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-        axios({
-            url:'http://47.107.243.207/api/get_my_article',
-	            method: 'get'
-            })
-            .then((response)=>{
-                 console.log(response.data);
-                 this.comName=response.data.articles;
             })
             .catch(function(error){
                 console.log(error);

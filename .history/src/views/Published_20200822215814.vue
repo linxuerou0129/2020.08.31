@@ -17,7 +17,7 @@
         <div class="body">
             <el-card class="box-card">
                 <p class="name">
-                    {{name}}
+                    八月三十
                 </p>
                 <el-button class="button" @click="hrefEdit" round>编辑个人资料</el-button>
             </el-card>
@@ -26,45 +26,18 @@
                     <span>我的游记</span>
                     <el-button style="float: right; padding: 3px 0" type="text" @click="hrefPublish">写游记</el-button>
                 </div>
-                <div>
-                    <el-card 
-                    class="single" 
-                    shadow="hover"
-                    v-for="(item,index) in comName"
-                    :key="index">
-                        <div style="display: -webkit-flex; /* Safari */
-                            display: flex;
-                            flex-direction: row;">
-                            <el-image
-                            style="width: 390px; height: 130px;background-color: #f5f7fa;"
-                            :src="item.image"
-                            fit="contain">
-                            </el-image>
-                            <h4 class="hide">{{item.article_title}}</h4>
-                        </div>
-                    </el-card>
-                </div>
             </el-card>
         </div>
     </div>
-    <div style="position: absolute;z-index: 9999;top:39%;left:16.5%">
-        <el-image
-        style="width: 160px; height: 160px;border-radius: 50%;"
-        :src="imageUrl"
-        fit="fill"></el-image>
-    </div>
-    
-</div> 
+    <img src="../assets/touxiang.jpeg" width="160" style="border-radius: 50%;position: absolute;z-index: 9999;top:40%;left:16.5%">
+</div>
 </template>
 
 <script>
-import axios from 'axios'
 export default {
     data(){
         return{
-            name:"",
-            imageUrl:"",
-            comName:[],
+
         }
     },
     methods:{
@@ -73,47 +46,12 @@ export default {
         },
         hrefEdit(){
             location.href="/Edit"
-        },
-        handleSelect(key, keyPath) {
-            console.log(key, keyPath);
-        },
-    },
-    created(){
-      axios({
-            url:'http://47.107.243.207/api/get_user_info',
-	            method: 'get'
-            })
-            .then((response)=>{
-                 console.log(response.data);
-                 this.imageUrl="http://47.107.243.207/api"+response.data.头像;
-                 this.name=response.data.用户名;
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-        axios({
-            url:'http://47.107.243.207/api/get_my_article',
-	            method: 'get'
-            })
-            .then((response)=>{
-                 console.log(response.data);
-                 this.comName=response.data.articles;
-            })
-            .catch(function(error){
-                console.log(error);
-            });
+        }
     }
 }
 </script>
 
 <style scoped>
-.hide{
-    width: 100%;
-    margin-left: 20px;
-}
-.single{
-    height: 168px;
-}
 .content-card{
     margin-left: 1.7%;
     margin-top: 1.5%;

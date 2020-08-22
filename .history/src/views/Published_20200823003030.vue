@@ -54,7 +54,7 @@
         fit="fill"></el-image>
     </div>
     
-</div> 
+</div>
 </template>
 
 <script>

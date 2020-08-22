@@ -51,10 +51,10 @@
         <el-image
         style="width: 160px; height: 160px;border-radius: 50%;"
         :src="imageUrl"
-        fit="fill"></el-image>
+        :fit="fit"></el-image>
     </div>
     
-</div> 
+</div>
 </template>
 
 <script>
@@ -64,7 +64,7 @@ export default {
         return{
             name:"",
             imageUrl:"",
-            comName:[],
+            comName:[]
         }
     },
     methods:{

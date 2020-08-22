@@ -38,7 +38,7 @@
                             <el-image
                             style="width: 390px; height: 130px;background-color: #f5f7fa;"
                             :src="item.image"
-                            fit="contain">
+                            :fit="contain">
                             </el-image>
                             <h4 class="hide">{{item.article_title}}</h4>
                         </div>
@@ -51,10 +51,10 @@
         <el-image
         style="width: 160px; height: 160px;border-radius: 50%;"
         :src="imageUrl"
-        fit="fill"></el-image>
+        :fit="contain"></el-image>
     </div>
     
-</div> 
+</div>
 </template>
 
 <script>
