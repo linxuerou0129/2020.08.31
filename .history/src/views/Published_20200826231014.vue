@@ -97,7 +97,7 @@ export default {
                 console.log(error);
             });
         axios({
-            url:'http://106.75.157.168:5657/api/get_my_article',
+            url:'http://106.75.157.168:5657/api/get_collection',
 	            method: 'get'
             })
             .then((response)=>{

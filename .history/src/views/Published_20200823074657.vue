@@ -79,25 +79,24 @@ export default {
             console.log(key, keyPath);
         },
         hrefArticle(a){
-            console.log(a);
-            location.href="/Show?article_id="+a
+            console.log(1);
         }
     },
     created(){
       axios({
-            url:'http://106.75.157.168:5657/api/get_user_info',
+            url:'http://47.107.243.207/api/get_user_info',
 	            method: 'get'
             })
             .then((response)=>{
                  console.log(response.data);
-                 this.imageUrl="http://106.75.157.168:5657/api"+response.data.头像;
+                 this.imageUrl="http://47.107.243.207/api"+response.data.头像;
                  this.name=response.data.用户名;
             })
             .catch(function(error){
                 console.log(error);
             });
         axios({
-            url:'http://106.75.157.168:5657/api/get_my_article',
+            url:'http://47.107.243.207/api/get_my_article',
 	            method: 'get'
             })
             .then((response)=>{

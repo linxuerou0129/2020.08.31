@@ -320,7 +320,7 @@ export default {
            if(val==true){
              axios({
               url:'http://106.75.157.168:5657/api/get_user_info',
-	            method: 'post'
+	            method: 'get'
             })
             .then((response)=>{
                  console.log(response.data);
@@ -335,7 +335,7 @@ export default {
     mounted(){
       axios({
             url:'http://106.75.157.168:5657/api/get_user_info',
-	            method: 'post'
+	            method: 'get'
             })
             .then((response)=>{
                  console.log(response.data);

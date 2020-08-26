@@ -31,11 +31,11 @@
                     class="single" 
                     shadow="hover"
                     v-for="(item,index) in comName"
-                    :key="index">
+                    :key="index"
+                    @click="hrefArticle(item.article_id)">
                         <div style="display: -webkit-flex; /* Safari */
                             display: flex;
-                            flex-direction: row;" 
-                            @click="hrefArticle(item.article_id)">
+                            flex-direction: row;">
                             <el-image
                             style="width: 390px; height: 130px;background-color: #f5f7fa;"
                             :src="item.image"
@@ -80,24 +80,23 @@ export default {
         },
         hrefArticle(a){
             console.log(a);
-            location.href="/Show?article_id="+a
         }
     },
     created(){
       axios({
-            url:'http://106.75.157.168:5657/api/get_user_info',
+            url:'http://47.107.243.207/api/get_user_info',
 	            method: 'get'
             })
             .then((response)=>{
                  console.log(response.data);
-                 this.imageUrl="http://106.75.157.168:5657/api"+response.data.头像;
+                 this.imageUrl="http://47.107.243.207/api"+response.data.头像;
                  this.name=response.data.用户名;
             })
             .catch(function(error){
                 console.log(error);
             });
         axios({
-            url:'http://106.75.157.168:5657/api/get_my_article',
+            url:'http://47.107.243.207/api/get_my_article',
 	            method: 'get'
             })
             .then((response)=>{

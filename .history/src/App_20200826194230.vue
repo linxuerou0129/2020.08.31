@@ -174,7 +174,7 @@ export default {
         }
       };
       return {
-        circleUrl: "http://106.75.157.168:5657/api/static/touxiang.png",
+        circleUrl: "http://106.75.157.168/api/static/touxiang.png",
         activeIndex: '1',
         activeIndex2: '1',
         login:false,
@@ -218,7 +218,7 @@ export default {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-              axios.post('http://106.75.157.168:5657/api/register', {
+              axios.post('http://106.75.157.168/api/register', {
                 register_email: this.formZhuce.email,
                 register_name:this.formZhuce.name,
                 register_password:this.formZhuce.pass,
@@ -260,7 +260,7 @@ export default {
                 });
         }
         else{
-          axios.post('http://106.75.157.168:5657/api/send_email', {
+          axios.post('http://106.75.157.168/api/send_email', {
               email: this.formZhuce.email,
               type:6
             })
@@ -276,7 +276,7 @@ export default {
       loginIt(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            axios.post('http://106.75.157.168:5657/api/login', {
+            axios.post('http://106.75.157.168/api/login', {
                 login_id: this.formLogin.email,
                 login_password:this.formLogin.pass
               })
@@ -303,7 +303,7 @@ export default {
         });
       },
       logout(){
-        axios.get('http://106.75.157.168:5657/api/logout')
+        axios.get('http://106.75.157.168/api/logout')
             .then((response)=>{
               console.log(response.data);
               this.login=false;
@@ -319,12 +319,12 @@ export default {
       login:function(val,oldVal){
            if(val==true){
              axios({
-              url:'http://106.75.157.168:5657/api/get_user_info',
-	            method: 'post'
+              url:'http://106.75.157.168/api/get_user_info',
+	            method: 'get'
             })
             .then((response)=>{
                  console.log(response.data);
-                this.circleUrl="http://106.75.157.168:5657/api"+response.data.头像;
+                this.circleUrl="http://106.75.157.168/api"+response.data.头像;
             })
             .catch(function(error){
                 console.log(error);
@@ -334,14 +334,14 @@ export default {
     },
     mounted(){
       axios({
-            url:'http://106.75.157.168:5657/api/get_user_info',
-	            method: 'post'
+            url:'http://106.75.157.168/api/get_user_info',
+	            method: 'get'
             })
             .then((response)=>{
                  console.log(response.data);
                 this.login=true
-                this.circleUrl="http://106.75.157.168:5657/api"+response.data.头像;
-                console.log("http://106.75.157.168:5657/api"+response.data.头像)
+                this.circleUrl="http://106.75.157.168/api"+response.data.头像;
+                console.log("http://106.75.157.168/api"+response.data.头像)
             })
             .catch(function(error){
                 console.log(error);
