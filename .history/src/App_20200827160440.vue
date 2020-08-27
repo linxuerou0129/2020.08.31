@@ -303,7 +303,7 @@ export default {
         });
       },
       logout(){
-        axios.get('http://106.75.157.168:5657/api/logout_user')
+        axios.get('http://106.75.157.168:5657/api/logout')
             .then((response)=>{
               console.log(response.data);
               this.login=false;

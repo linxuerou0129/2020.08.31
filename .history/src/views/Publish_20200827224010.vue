@@ -340,7 +340,7 @@ export default {
                 text:this.textarea,
                 title:this.tittle,
                 position:this.place+this.scenics,
-                start:this.data+"",
+                statr:this.data+"",
                 days:this.dayNum+"天",
                 people:this.people,
                 pay:this.money+"元"

@@ -35,7 +35,6 @@
             <el-date-picker
             v-model="data"
             type="date"
-            value-format="yyyy-MM-dd"
             placeholder="选择出发日期">
             </el-date-picker>
           </div>
@@ -340,7 +339,7 @@ export default {
                 text:this.textarea,
                 title:this.tittle,
                 position:this.place+this.scenics,
-                start:this.data+"",
+                statr:this.data,
                 days:this.dayNum+"天",
                 people:this.people,
                 pay:this.money+"元"

@@ -47,7 +47,9 @@
                     <p>{{position}}</p>
                 </div>
             </div>
-            <p>{{text}}</p>
+            <p>
+                说到提升日常幸福感的日常家电，我觉得饮水机绝对可以拥有姓名，虽然摆在角落的饮水机日常存在感很弱，但是日常离了它还真是不行，自打换了这台美的饮水机，感觉家里好像多了一个mini茶饮吧，感觉全家人都爱上了喝水~
+            </p>
         </div>
         <div class="action">
             <div class="row" style="margin-right:30px;">
@@ -85,8 +87,7 @@ export default {
             days:"",
             people:"",
             pay:"",
-            position:"",
-            text:""
+            position:""
         }
     },
     methods:{
@@ -138,7 +139,6 @@ export default {
              this.people=response.data.people;
              this.pay=response.data.pay;
              this.position=response.data.position;
-             this.text=response.data.text;
         })
         .catch(function(error){
             console.log(error);

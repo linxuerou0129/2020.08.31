@@ -1,16 +1,12 @@
 <template>
 <el-card class="box-card">
-    <div>
-        <div>
-            <el-image
-            style="width: 160px; height: 160px;border-radius: 50%;margin-right:20px"
-            :src="imageUrl"
-            fit="fill"></el-image>
-        </div>
-        <h3 class="name">
-            {{name}}
-        </h3>
-    </div>
+    <el-image
+    style="width: 160px; height: 160px;border-radius: 50%;"
+    :src="imageUrl"
+    fit="fill"></el-image>
+    <p class="name">
+        {{name}}
+    </p>
 </el-card>
 </template>
 
@@ -28,7 +24,7 @@ export default {
             name:"",
             imageUrl:"",
         }
-    },/*
+    },
     created(){
         axios.post('http://106.75.157.168:5657/api/getotherinfo', {
                 user_id:this.id
@@ -41,7 +37,7 @@ export default {
             .catch(function (error) {
               console.log(error);
             });
-    },*/
+    },
     props:["id"],
     watch:{
         id(newdata,olddata){
@@ -68,9 +64,12 @@ export default {
     display: block;
     line-height: 45px;
     text-align: center;
+    position:relative;
+    margin-top: 30%;
+    font-size: 22px;
 }
 .box-card {
-    width: 20%;
+    width: 30%;
     height: 250px;
 }
 </style>

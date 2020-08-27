@@ -62,15 +62,18 @@ export default {
 </script>
 
 <style scoped>
+.row{
+    display: -webkit-flex; /* Safari */
+  display: flex;
+    flex-direction: row;
+}
 .name{
     width: 100%;
     height: 45px;
-    display: block;
-    line-height: 45px;
-    text-align: center;
+    font-size: 22px;
 }
 .box-card {
-    width: 20%;
-    height: 250px;
+    width: 30%;
+    height: 200px;
 }
 </style>

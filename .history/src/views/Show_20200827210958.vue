@@ -1,53 +1,51 @@
 <template>
 <div class="content">
     <div>
-        <card class="card" :id="author_id"></card>
+        <card class="card"></card>
     </div>
     <div class="right">
-        <el-carousel 
-        indicator-position="outside" 
-        arrow="always" >
-            <el-carousel-item 
-            v-for="(item,index) in image"
-            :key="index">
-                <img class="photo" :src="item.image">
+        <el-carousel indicator-position="outside" arrow="always">
+            <el-carousel-item>
+                <img class="photo" src="../assets/test1.jpg">
             </el-carousel-item>
         </el-carousel>    
         <div>
-            <h2>{{title}}</h2>
+            <h2>居家小家电分享|pick这位家庭饮水小助理~</h2>
             <div class="border">
                 <div class="row">
                     <img src="../assets/shijian.png" width="30" height="30" style="margin-right:5px;">
                     <p>出发时间</p>
                     <p class="xiegang">/</p>
-                    <p>{{start}}</p>
+                    <p>2020-04-08</p>
                 </div>
                 <div class="row">
                     <img src="../assets/tianshu.png" width="27" height="27" style="margin-right:5px;">
                     <p>出行天数</p>
                     <p class="xiegang">/</p>
-                    <p>{{days}}</p>
+                    <p>3天</p>
                 </div>
                 <div class="row">
                     <img src="../assets/people.png" width="30" height="30" style="margin-right:5px;">
                     <p>人物</p>
                     <p class="xiegang">/</p>
-                    <p>{{people}}</p>
+                    <p>情侣</p>
                 </div>
                 <div class="row">
                     <img src="../assets/feiyong.png" width="30" height="30" style="margin-right:5px;">
                     <p>人均费用</p>
                     <p class="xiegang">/</p>
-                    <p>{{pay}}</p>
+                    <p>100元</p>
                 </div>
                 <div class="row">
                     <img src="../assets/location.png" width="28" height="28" style="margin-right:5px;">
                     <p>地点</p>
                     <p class="xiegang">/</p>
-                    <p>{{position}}</p>
+                    <p>福建省厦门市</p>
                 </div>
             </div>
-            <p>{{text}}</p>
+            <p>
+                说到提升日常幸福感的日常家电，我觉得饮水机绝对可以拥有姓名，虽然摆在角落的饮水机日常存在感很弱，但是日常离了它还真是不行，自打换了这台美的饮水机，感觉家里好像多了一个mini茶饮吧，感觉全家人都爱上了喝水~
+            </p>
         </div>
         <div class="action">
             <div class="row" style="margin-right:30px;">
@@ -55,8 +53,8 @@
                 <p>1111</p>
             </div>
             <div class="row">
-                <el-button :type="type2" :icon="zan" circle @click="zanIt"></el-button>
-                <P  style="margin-left:4px">2222</P>
+                <el-button :type="type2" :icon="zan" circle @click="zanIt" style="margin-right:4px"></el-button>
+                <P>2222</P>
             </div>
         </div>
     </div>   
@@ -77,16 +75,7 @@ export default {
             collect:"el-icon-star-off",
             zan:"el-icon-thumb",
             type1:"",
-            type2:"",
-            author_id:Number,
-            image:[],
-            title:"",
-            start:"",
-            days:"",
-            people:"",
-            pay:"",
-            position:"",
-            text:""
+            type2:""
         }
     },
     methods:{
@@ -130,15 +119,6 @@ export default {
         })
         .then((response)=>{
              console.log(response.data);
-             this.author_id=response.data.author_id;
-             this.image=response.data.image;
-             this.title=response.data.title;
-             this.start=response.data.start;
-             this.days=response.data.days;
-             this.people=response.data.people;
-             this.pay=response.data.pay;
-             this.position=response.data.position;
-             this.text=response.data.text;
         })
         .catch(function(error){
             console.log(error);
@@ -155,7 +135,7 @@ export default {
     flex-direction: row;
     align-items: center;
     position: absolute;
-    left: 73%;
+    left: 70%;
 }
 .row{
       display: -webkit-flex; /* Safari */
@@ -187,14 +167,14 @@ export default {
 .right{
     width: 57%;
     position: absolute;
-    right: 12%;
+    right: 5%;
     margin-top: 20px;
 }
 .card{
     position: absolute;
-    left: 12%;
+    left: 5%;
     margin-top: 20px;
-    width: 16%;
+    width: 30%;
 }
 .content{
   width: 100%;

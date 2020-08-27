@@ -1,15 +1,15 @@
 <template>
 <el-card class="box-card">
-    <div>
+    <div class="row">
         <div>
             <el-image
             style="width: 160px; height: 160px;border-radius: 50%;margin-right:20px"
             :src="imageUrl"
             fit="fill"></el-image>
         </div>
-        <h3 class="name">
+        <p class="name">
             {{name}}
-        </h3>
+        </p>
     </div>
 </el-card>
 </template>
@@ -62,15 +62,18 @@ export default {
 </script>
 
 <style scoped>
+.row{
+    display: -webkit-flex; /* Safari */
+  display: flex;
+    flex-direction: row;
+}
 .name{
     width: 100%;
     height: 45px;
-    display: block;
-    line-height: 45px;
-    text-align: center;
+    font-size: 22px;
 }
 .box-card {
-    width: 20%;
-    height: 250px;
+    width: 30%;
+    height: 200px;
 }
 </style>

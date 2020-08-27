@@ -65,6 +65,7 @@ export default {
 .name{
     width: 100%;
     height: 45px;
+    font-size: 22px;
     display: block;
     line-height: 45px;
     text-align: center;

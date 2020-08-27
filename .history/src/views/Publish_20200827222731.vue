@@ -35,7 +35,6 @@
             <el-date-picker
             v-model="data"
             type="date"
-            value-format="yyyy-MM-dd"
             placeholder="选择出发日期">
             </el-date-picker>
           </div>
@@ -334,13 +333,13 @@ export default {
                 image:"http://106.75.157.168:5657/api"+this.fileList[i].response.icon
             });
         }
-        console.log(this.data);
+        console.log(this.image);
         axios.post('http://106.75.157.168:5657/api/publish', {
                 image:this.image,
                 text:this.textarea,
                 title:this.tittle,
                 position:this.place+this.scenics,
-                start:this.data+"",
+                statr:this.data,
                 days:this.dayNum+"天",
                 people:this.people,
                 pay:this.money+"元"

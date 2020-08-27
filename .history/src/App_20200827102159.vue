@@ -303,7 +303,7 @@ export default {
         });
       },
       logout(){
-        axios.get('http://106.75.157.168:5657/api/logout_user')
+        axios.get('http://106.75.157.168:5657/api/logout')
             .then((response)=>{
               console.log(response.data);
               this.login=false;
@@ -319,8 +319,8 @@ export default {
       login:function(val,oldVal){
            if(val==true){
              axios({
-              url:'http://106.75.157.168:5657/api/getinfo',
-	            method: 'get'
+              url:'http://106.75.157.168:5657/api/get_user_info',
+	            method: 'post'
             })
             .then((response)=>{
                  console.log(response.data);
@@ -334,8 +334,8 @@ export default {
     },
     mounted(){
       axios({
-            url:'http://106.75.157.168:5657/api/getinfo',
-	            method: 'get'
+            url:'http://106.75.157.168:5657/api/get_user_info',
+	            method: 'post'
             })
             .then((response)=>{
                  console.log(response.data);
