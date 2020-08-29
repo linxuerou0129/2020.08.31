@@ -15,45 +15,7 @@
             <el-menu-item index="/Message" class="head1"><strong>消息中心</strong></el-menu-item>
         </el-menu>
         <div class="body">
-            <el-card class="box-card">
-                <p class="name">
-                    {{name}}
-                </p>
-                <el-button class="button" @click="hrefEdit" round>编辑个人资料</el-button>
-            </el-card>
-            <el-card class="content-card">
-                <div slot="header" class="clearfix">
-                    <span>我的收藏</span>
-                </div>
-                <div>
-                    <el-card 
-                    class="single" 
-                    shadow="hover"
-                    v-for="(item,index) in comName"
-                    :key="index">
-                        <div style="display: -webkit-flex; /* Safari */
-                            display: flex;
-                            flex-direction: row;" 
-                            @click="hrefArticle(item.article_id)">
-                            <el-image
-                            style="width: 390px; height: 130px;background-color: #f5f7fa;"
-                            :src="item.image"
-                            fit="contain">
-                            </el-image>
-                            <h4 class="hide">{{item.article_title}}</h4>
-                        </div>
-                    </el-card>
-                </div>
-            </el-card>
-        </div>
     </div>
-    <div style="position: absolute;z-index: 9999;top:39%;left:16.5%">
-        <el-image
-        style="width: 160px; height: 160px;border-radius: 50%;"
-        :src="imageUrl"
-        fit="fill"></el-image>
-    </div>
-    
 </div> 
 </template>
 
@@ -68,6 +30,9 @@ export default {
         }
     },
     methods:{
+        hrefPublish(){
+            location.href="/Publish"
+        },
         hrefEdit(){
             location.href="/Edit"
         },
@@ -93,12 +58,12 @@ export default {
                 console.log(error);
             });
         axios({
-            url:'http://106.75.157.168:5657/api/get_collection',
+            url:'http://106.75.157.168:5657/api/get_my_article',
 	            method: 'get'
             })
             .then((response)=>{
                  console.log(response.data);
-                 this.comName=response.data.collections;
+                 this.comName=response.data.articles;
             })
             .catch(function(error){
                 console.log(error);

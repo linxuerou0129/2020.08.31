@@ -14,31 +14,37 @@
         <el-menu-item index="/Message" class="head1"><strong>消息中心</strong></el-menu-item>
     </el-menu>
     <div class="body">
-        <el-tabs tab-position="left" style="width:84%;margin-left:8%;padding-bottom:20px">
-            <el-tab-pane label="收到的赞">
-
-            </el-tab-pane>
-            <el-tab-pane label="收藏我的">
-
-            </el-tab-pane>
-            <el-tab-pane label="评论我的">
-                <pinglunList></pinglunList>
-            </el-tab-pane>
-            <el-tab-pane label="回复我的">
-
-            </el-tab-pane>
-        </el-tabs>
+        <el-menu
+        default-active="2"
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose">
+        <el-menu-item index="1">
+            <template slot="title">
+            <i class="el-icon-location"></i>
+            <span>导航一</span>
+            </template>
+        </el-menu-item>
+        <el-menu-item index="2">
+            <i class="el-icon-menu"></i>
+            <span slot="title">导航二</span>
+        </el-menu-item>
+        <el-menu-item index="3" disabled>
+            <i class="el-icon-document"></i>
+            <span slot="title">导航三</span>
+        </el-menu-item>
+        <el-menu-item index="4">
+            <i class="el-icon-setting"></i>
+            <span slot="title">导航四</span>
+        </el-menu-item>
+        </el-menu>
     </div> 
 </div>
 </template>
 
 <script>
-import pinglunList from '../components/pinglunList.vue'
 import axios from 'axios'
 export default {
-    components: { 
-        pinglunList
-    },
     data(){
         return{
         }
@@ -66,11 +72,6 @@ export default {
 </script>
 
 <style scoped>
-.head1{
-  position: relative;
-  left: 75%;
-  font-size: 15px;
-}
 .body{
     display: -webkit-flex; /* Safari */
     display: flex;

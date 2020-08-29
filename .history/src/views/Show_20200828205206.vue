@@ -1,5 +1,5 @@
 <template>
-<div class="content"  id="x">
+<div class="content">
     <div>
         <card class="card" :id="author_id"></card>
     </div>
@@ -71,7 +71,7 @@
             </el-input>
             <img class="sendI" src="../assets/fasong.png" width="25" height="25" @click="send">
         </div>
-        <div>
+        <div id="x">
                 <component
                     v-for="(item,index) in comName"
                     :is="item.name"
@@ -123,35 +123,10 @@ export default {
                 time:"",
                 user_id:1
             },
-            comName:[],
-            avatar:"",
-            user_id:Number,
-            name:""
+            comName:[]
         }
     },
     methods:{
-        getDatetime:function() {
-            var now = new Date();
-            var year = now.getFullYear();       
-            var month = now.getMonth() + 1;     
-            var day = now.getDate();            
-            var hh = now.getHours();            
-            var mm = now.getMinutes();          
-            var ss = now.getSeconds();          
-            var clock = year + "-";
-            if (month < 10)
-                clock += "0";
-            clock += month + "-";
-            if (day < 10)
-                clock += "0";
-            clock += day + " ";
-            if (hh < 10)
-                clock += "0";
-            clock += hh + ":";
-            if (mm < 10) clock += '0';
-            clock += mm ;
-            return clock;
-        },
         send:function(){
             if(this.comment==""){
                 this.$message({
@@ -167,15 +142,16 @@ export default {
                 .then((response) =>{
                     if(response.data.status=="success"){
                         this.data={
-                            comment:this.comment, 
-                            id: response.data.comment_id, 
-                            avatar:this.avatar,
-                            replies: [],
-                            time:this.getDatetime(),
-                            user_id:this.user_id,
-                            name:this.name,
+                            comment: "啊啊啊", 
+                            id: 1, 
+                            avatar:"",
+                            replies: [
+                                "1111",
+                                '1222'
+                            ],
+                            time:"",
+                            user_id:1
                         }
-                        this.addCom();
                         this.$message({
                             message: '评论成功',
                             type: 'success'
@@ -218,14 +194,14 @@ export default {
             return(false);
         },
         collectIt(){
-            axios.post('http://106.75.157.168:5657/api/collect', {
+            /*axios.post('http://106.75.157.168:5657/api/collect', {
                 article_id:this.article_id
               })
             .then((response) =>{
                 console.log(response.data)
                 if(response.data.status=="add"){
                     this.type1="primary";
-                    this.collect="el-icon-star-on";
+                    this.collect="el-icon-star-on",
                     this.collection+=1;
                 }
                 else{
@@ -236,7 +212,14 @@ export default {
             })
             .catch(function (error) {
               console.log(error);
-            });
+            });*/
+            axios.get('http://106.75.157.168:5657/api/collect_list1')
+        .then((response)=>{
+             console.log(response.data);
+        })
+        .catch(function(error){
+            console.log(error);
+        });
         },
         addCom:function(){
             this.comName.push({
@@ -249,19 +232,6 @@ export default {
     },
     created(){
         this.article_id=this.getQueryVariable("article_id");
-        axios({
-            url:'http://106.75.157.168:5657/api/getinfo',
-	            method: 'get'
-            })
-            .then((response)=>{
-                console.log(response.data);
-                this.avatar="http://106.75.157.168:5657/api"+response.data.头像;
-                this.user_id=response.data.用户id;
-                this.name=response.data.用户名;
-            })
-            .catch(function(error){
-                console.log(error);
-            });
     },
     mounted(){
         console.log(this.article_id);

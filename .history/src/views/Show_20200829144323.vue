@@ -149,7 +149,7 @@ export default {
                 clock += "0";
             clock += hh + ":";
             if (mm < 10) clock += '0';
-            clock += mm ;
+            clock += mm + ":";
             return clock;
         },
         send:function(){

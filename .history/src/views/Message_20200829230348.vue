@@ -22,7 +22,7 @@
 
             </el-tab-pane>
             <el-tab-pane label="评论我的">
-                <pinglunList></pinglunList>
+                
             </el-tab-pane>
             <el-tab-pane label="回复我的">
 
@@ -33,12 +33,8 @@
 </template>
 
 <script>
-import pinglunList from '../components/pinglunList.vue'
 import axios from 'axios'
 export default {
-    components: { 
-        pinglunList
-    },
     data(){
         return{
         }

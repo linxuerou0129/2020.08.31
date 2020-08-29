@@ -244,7 +244,7 @@ export default {
                 data:this.data
             });
             let div = document.getElementById('x');
-            div.scrollTop = div.scrollHeight;
+            div.scrollTop = div.scrollHeight+0.1;
         },
     },
     created(){

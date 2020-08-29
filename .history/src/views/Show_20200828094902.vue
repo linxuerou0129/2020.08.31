@@ -1,5 +1,5 @@
 <template>
-<div class="content"  id="x">
+<div class="content">
     <div>
         <card class="card" :id="author_id"></card>
     </div>
@@ -59,25 +59,9 @@
                 <P  style="margin-left:4px">{{thumb}}</P>
             </div>
         </div>
-        <div  id="in">
-            <el-input
-            type="textarea"
-            class="putIn"
-            :autosize="{ minRows: 2, maxRows: 5}"
-            placeholder="登录后方可评论"
-            v-model="comment"
-            maxlength="200"
-            show-word-limit>
-            </el-input>
-            <img class="sendI" src="../assets/fasong.png" width="25" height="25" @click="send">
-        </div>
-        <div>
-                <component
-                    v-for="(item,index) in comName"
-                    :is="item.name"
-                    :key="index"
-                    :data="item.data"
-                ></component>
+        <div class="row2">
+            <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+            <el-input></el-input>
         </div>
     </div>   
 </div>
@@ -85,13 +69,11 @@
 </template>
 
 <script>
-import commentS from '../components/pinglun.vue'
 import card from '../components/card.vue'
 import axios from 'axios'
 export default {
     components: { 
-        card,
-        commentS
+        card
     },
     data(){
         return{
@@ -111,85 +93,9 @@ export default {
             text:"",
             collection:Number,
             thumb:Number,
-            comment:"",
-            data:{
-                comment: "啊啊啊", 
-                id: 1, 
-                avatar:"",
-                replies: [
-                    "1111",
-                    '1222'
-                ],
-                time:"",
-                user_id:1
-            },
-            comName:[],
-            avatar:"",
-            user_id:Number,
-            name:""
         }
     },
     methods:{
-        getDatetime:function() {
-            var now = new Date();
-            var year = now.getFullYear();       
-            var month = now.getMonth() + 1;     
-            var day = now.getDate();            
-            var hh = now.getHours();            
-            var mm = now.getMinutes();          
-            var ss = now.getSeconds();          
-            var clock = year + "-";
-            if (month < 10)
-                clock += "0";
-            clock += month + "-";
-            if (day < 10)
-                clock += "0";
-            clock += day + " ";
-            if (hh < 10)
-                clock += "0";
-            clock += hh + ":";
-            if (mm < 10) clock += '0';
-            clock += mm ;
-            return clock;
-        },
-        send:function(){
-            if(this.comment==""){
-                this.$message({
-                    message: '评论不可为空',
-                    type: 'warning'
-                });
-            }
-            else{
-                axios.post('http://106.75.157.168:5657/api/comment', {
-                    article_id:this.article_id,
-                    text:this.comment
-                })
-                .then((response) =>{
-                    if(response.data.status=="success"){
-                        this.data={
-                            comment:this.comment, 
-                            id: response.data.comment_id, 
-                            avatar:this.avatar,
-                            replies: [],
-                            time:this.getDatetime(),
-                            user_id:this.user_id,
-                            name:this.name,
-                        }
-                        this.addCom();
-                        this.$message({
-                            message: '评论成功',
-                            type: 'success'
-                        });
-                    }
-                    else{
-                        this.$message.error('评论失败');
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            }
-        },
         zanIt(){
             axios.post('http://106.75.157.168:5657/api/thumb', {
                 id:this.article_id
@@ -225,7 +131,7 @@ export default {
                 console.log(response.data)
                 if(response.data.status=="add"){
                     this.type1="primary";
-                    this.collect="el-icon-star-on";
+                    this.collect="el-icon-star-on",
                     this.collection+=1;
                 }
                 else{
@@ -237,31 +143,10 @@ export default {
             .catch(function (error) {
               console.log(error);
             });
-        },
-        addCom:function(){
-            this.comName.push({
-                name:"commentS",
-                data:this.data
-            });
-            let div = document.getElementById('x');
-            div.scrollTop = div.scrollHeight;
-        },
+        }
     },
     created(){
         this.article_id=this.getQueryVariable("article_id");
-        axios({
-            url:'http://106.75.157.168:5657/api/getinfo',
-	            method: 'get'
-            })
-            .then((response)=>{
-                console.log(response.data);
-                this.avatar="http://106.75.157.168:5657/api"+response.data.头像;
-                this.user_id=response.data.用户id;
-                this.name=response.data.用户名;
-            })
-            .catch(function(error){
-                console.log(error);
-            });
     },
     mounted(){
         console.log(this.article_id);
@@ -294,47 +179,17 @@ export default {
         .catch(function(error){
             console.log(error);
         });
-        axios.post('http://106.75.157.168:5657/api/getcomments', {
-                article_id:this.article_id
-              })
-            .then((response)=>{
-                 console.log(response.data);
-                let array=response.data.comments;
-                    for(let i=0;i<array.length;i++){
-                        array[i].avatar="http://106.75.157.168:5657/api"+array[i].avatar;
-                        this.data=array[i];
-                        this.addCom();
-                    }
-            })
-            .catch(function(error){
-                console.log(error);
-            });
     }
 }
 </script>
 
 <style scoped>
-.sendI{
-    position: relative;
-    margin: 3%;
-    background-color: #0176ff;
-    border-radius: 50%;
-}
-.putIn{
-    border: none;
-    position: absolute;
-    width: 91%;
-    left: 0;
-}
-#in{
-    margin-top: 12%;
-    width: 100%;
-    display: -webkit-flex; /* Safari */
-    display: flex;
+.row2{
+     display: -webkit-flex; /* Safari */
+  display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    word-wrap:break-word;
-    word-break:break-all;
+    align-items: center;
+    margin-top: 5%;
 }
 .action{
     display: -webkit-flex; /* Safari */

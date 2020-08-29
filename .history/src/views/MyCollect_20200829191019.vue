@@ -23,7 +23,8 @@
             </el-card>
             <el-card class="content-card">
                 <div slot="header" class="clearfix">
-                    <span>我的收藏</span>
+                    <span>我的游记</span>
+                    <el-button style="float: right; padding: 3px 0" type="text" @click="hrefPublish">写游记</el-button>
                 </div>
                 <div>
                     <el-card 
@@ -68,6 +69,9 @@ export default {
         }
     },
     methods:{
+        hrefPublish(){
+            location.href="/Publish"
+        },
         hrefEdit(){
             location.href="/Edit"
         },
@@ -93,12 +97,12 @@ export default {
                 console.log(error);
             });
         axios({
-            url:'http://106.75.157.168:5657/api/get_collection',
+            url:'http://106.75.157.168:5657/api/get_my_article',
 	            method: 'get'
             })
             .then((response)=>{
                  console.log(response.data);
-                 this.comName=response.data.collections;
+                 this.comName=response.data.articles;
             })
             .catch(function(error){
                 console.log(error);

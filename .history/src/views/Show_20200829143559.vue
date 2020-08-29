@@ -1,5 +1,5 @@
 <template>
-<div class="content"  id="x">
+<div class="content">
     <div>
         <card class="card" :id="author_id"></card>
     </div>
@@ -71,7 +71,7 @@
             </el-input>
             <img class="sendI" src="../assets/fasong.png" width="25" height="25" @click="send">
         </div>
-        <div>
+        <div id="x">
                 <component
                     v-for="(item,index) in comName"
                     :is="item.name"
@@ -130,28 +130,6 @@ export default {
         }
     },
     methods:{
-        getDatetime:function() {
-            var now = new Date();
-            var year = now.getFullYear();       
-            var month = now.getMonth() + 1;     
-            var day = now.getDate();            
-            var hh = now.getHours();            
-            var mm = now.getMinutes();          
-            var ss = now.getSeconds();          
-            var clock = year + "-";
-            if (month < 10)
-                clock += "0";
-            clock += month + "-";
-            if (day < 10)
-                clock += "0";
-            clock += day + " ";
-            if (hh < 10)
-                clock += "0";
-            clock += hh + ":";
-            if (mm < 10) clock += '0';
-            clock += mm ;
-            return clock;
-        },
         send:function(){
             if(this.comment==""){
                 this.$message({
@@ -171,9 +149,9 @@ export default {
                             id: response.data.comment_id, 
                             avatar:this.avatar,
                             replies: [],
-                            time:this.getDatetime(),
+                            time:"",
                             user_id:this.user_id,
-                            name:this.name,
+                            name:this.name
                         }
                         this.addCom();
                         this.$message({
@@ -225,7 +203,7 @@ export default {
                 console.log(response.data)
                 if(response.data.status=="add"){
                     this.type1="primary";
-                    this.collect="el-icon-star-on";
+                    this.collect="el-icon-star-on",
                     this.collection+=1;
                 }
                 else{

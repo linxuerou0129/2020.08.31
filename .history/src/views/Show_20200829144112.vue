@@ -1,5 +1,5 @@
 <template>
-<div class="content"  id="x">
+<div class="content">
     <div>
         <card class="card" :id="author_id"></card>
     </div>
@@ -71,7 +71,7 @@
             </el-input>
             <img class="sendI" src="../assets/fasong.png" width="25" height="25" @click="send">
         </div>
-        <div>
+        <div id="x">
                 <component
                     v-for="(item,index) in comName"
                     :is="item.name"
@@ -131,27 +131,28 @@ export default {
     },
     methods:{
         getDatetime:function() {
-            var now = new Date();
-            var year = now.getFullYear();       
-            var month = now.getMonth() + 1;     
-            var day = now.getDate();            
-            var hh = now.getHours();            
-            var mm = now.getMinutes();          
-            var ss = now.getSeconds();          
-            var clock = year + "-";
-            if (month < 10)
-                clock += "0";
-            clock += month + "-";
-            if (day < 10)
-                clock += "0";
-            clock += day + " ";
-            if (hh < 10)
-                clock += "0";
-            clock += hh + ":";
-            if (mm < 10) clock += '0';
-            clock += mm ;
-            return clock;
-        },
+    var now = new Date();
+    var year = now.getFullYear();       
+    var month = now.getMonth() + 1;     
+    var day = now.getDate();            
+    var hh = now.getHours();            
+    var mm = now.getMinutes();          
+    var ss = now.getSeconds();          
+    var clock = year + "-";
+    if (month < 10)
+        clock += "0";
+    clock += month + "-";
+    if (day < 10)
+        clock += "0";
+    clock += day + " ";
+    if (hh < 10)
+        clock += "0";
+    clock += hh + ":";
+    if (mm < 10) clock += '0';
+    clock += mm + ":";
+    if (ss < 10) clock += '0';
+    clock += ss;
+    return clock;},
         send:function(){
             if(this.comment==""){
                 this.$message({
