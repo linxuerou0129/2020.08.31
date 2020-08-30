@@ -39,21 +39,7 @@
                 </el-collapse>
             </el-tab-pane>
             <el-tab-pane label="回复我的">
-                <el-collapse>
-                    <el-collapse-item 
-                    v-for="(item,index) in replyList"
-                    :key="index">
-                        <template slot="title">
-                            <el-avatar :size="35" :src="item.reply_user_avatar" style="margin-left:10px;margin-right:10px"></el-avatar>
-                            <div class="row">
-                                <strong style="margin-right:5px">{{item.reply_user_name}}</strong>
-                                <p style="margin-right:5px">评论了</p><strong style="color:#b1b2bb;margin-right:20px">"{{item.comment_text}}"</strong>
-                            </div>
-                            <p class="gray">{{item.reply_time}}</p>
-                        </template>
-                        <div style="margin-left:10px;margin-right:10px">{{item.reply_text}}</div>
-                    </el-collapse-item>
-                </el-collapse>
+
             </el-tab-pane>
         </el-tabs>
     </div> 
@@ -65,8 +51,7 @@ import axios from 'axios'
 export default {
     data(){
         return{
-            pinglunList:[],
-            replyList:[],
+            pinglunList:[]
         }
     },
     methods:{
@@ -82,25 +67,10 @@ export default {
             .then((response)=>{
                  console.log(response.data);
                  this.pinglunList=response.data.comment_me;
-                 for(let i=0;i<this.pinglunList.length;i++){
+                 for(let i=0;i++;i<this.pinglunList.length){
                      this.pinglunList[i].comment_user_avatar="http://106.75.157.168:5657/api"+this.pinglunList[i].comment_user_avatar;
                  }
                  console.log(this.pinglunList)
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-        axios({
-            url:'http://106.75.157.168:5657/api/reply_me_list',
-	            method: 'get'
-            })
-            .then((response)=>{
-                 console.log(response.data);
-                 this.replyList=response.data.reply_me;
-                 for(let i=0;i<this.replyList.length;i++){
-                     this.replyList[i].reply_user_avatar="http://106.75.157.168:5657/api"+this.replyList[i].reply_user_avatar;
-                 }
-                 console.log(this.replyList)
             })
             .catch(function(error){
                 console.log(error);

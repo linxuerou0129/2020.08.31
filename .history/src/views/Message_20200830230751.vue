@@ -27,33 +27,19 @@
                     v-for="(item,index) in pinglunList"
                     :key="index">
                         <template slot="title">
-                            <el-avatar :size="35" :src="item.comment_user_avatar" style="margin-left:10px;margin-right:10px"></el-avatar>
+                            <el-avatar :size="35" :src="imageUrl" style="margin-left:10px;margin-right:10px"></el-avatar>
                             <div class="row">
-                                <strong style="margin-right:5px">{{item.comment_user_name}}</strong>
-                                <p style="margin-right:5px">评论了</p><strong style="color:#b1b2bb;margin-right:20px">"{{item.article_title}}"</strong>
+                                <strong style="margin-right:5px">1111111111</strong>
+                                <p style="margin-right:5px">评论了</p><strong style="color:#b1b2bb;margin-right:20px">"1111111111111"</strong>
                             </div>
-                            <p class="gray">{{item.comment_time}}</p>
+                            <p class="gray">2020-08-30 12:30</p>
                         </template>
-                        <div style="margin-left:10px;margin-right:10px">{{item.comment_text}}</div>
+                        <div style="margin-left:10px;margin-right:10px">与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
                     </el-collapse-item>
                 </el-collapse>
             </el-tab-pane>
             <el-tab-pane label="回复我的">
-                <el-collapse>
-                    <el-collapse-item 
-                    v-for="(item,index) in replyList"
-                    :key="index">
-                        <template slot="title">
-                            <el-avatar :size="35" :src="item.reply_user_avatar" style="margin-left:10px;margin-right:10px"></el-avatar>
-                            <div class="row">
-                                <strong style="margin-right:5px">{{item.reply_user_name}}</strong>
-                                <p style="margin-right:5px">评论了</p><strong style="color:#b1b2bb;margin-right:20px">"{{item.comment_text}}"</strong>
-                            </div>
-                            <p class="gray">{{item.reply_time}}</p>
-                        </template>
-                        <div style="margin-left:10px;margin-right:10px">{{item.reply_text}}</div>
-                    </el-collapse-item>
-                </el-collapse>
+
             </el-tab-pane>
         </el-tabs>
     </div> 
@@ -65,8 +51,7 @@ import axios from 'axios'
 export default {
     data(){
         return{
-            pinglunList:[],
-            replyList:[],
+            pinglunList:[]
         }
     },
     methods:{
@@ -82,25 +67,6 @@ export default {
             .then((response)=>{
                  console.log(response.data);
                  this.pinglunList=response.data.comment_me;
-                 for(let i=0;i<this.pinglunList.length;i++){
-                     this.pinglunList[i].comment_user_avatar="http://106.75.157.168:5657/api"+this.pinglunList[i].comment_user_avatar;
-                 }
-                 console.log(this.pinglunList)
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-        axios({
-            url:'http://106.75.157.168:5657/api/reply_me_list',
-	            method: 'get'
-            })
-            .then((response)=>{
-                 console.log(response.data);
-                 this.replyList=response.data.reply_me;
-                 for(let i=0;i<this.replyList.length;i++){
-                     this.replyList[i].reply_user_avatar="http://106.75.157.168:5657/api"+this.replyList[i].reply_user_avatar;
-                 }
-                 console.log(this.replyList)
             })
             .catch(function(error){
                 console.log(error);
