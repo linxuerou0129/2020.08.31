@@ -24,11 +24,7 @@
         v-model="input"
         clearable class="input">
       </el-input>
-      <el-button 
-      type="primary" 
-      icon="el-icon-search" 
-      style="margin-left:6%;height:40px;margin-top:1.77%"
-      @click="hrefSearch"></el-button>
+      <el-button type="primary" icon="el-icon-search" style="margin-left:6%;height:40px;margin-top:1.77%"></el-button>
     </div>
   </div>
 </template>
@@ -41,11 +37,6 @@ export default {
             input:''
         }
     },
-    methods:{
-        hrefSearch(){
-            location.href="/Search?page=1&keyword="+this.input;
-        }
-    }
 }
 </script>
 

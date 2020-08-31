@@ -20,15 +20,11 @@
     </div>
     <div class="search">
       <el-input
-        placeholder="请输入地名/游记标题"
+        placeholder="请输入内容"
         v-model="input"
         clearable class="input">
+        <el-button type="primary" icon="el-icon-search"></el-button>
       </el-input>
-      <el-button 
-      type="primary" 
-      icon="el-icon-search" 
-      style="margin-left:6%;height:40px;margin-top:1.77%"
-      @click="hrefSearch"></el-button>
     </div>
   </div>
 </template>
@@ -41,23 +37,18 @@ export default {
             input:''
         }
     },
-    methods:{
-        hrefSearch(){
-            location.href="/Search?page=1&keyword="+this.input;
-        }
-    }
 }
 </script>
 
 <style scoped>
 .input{
-  width: 80%;
+  width: 29%;
   left: 5%;
   top: 18%;
 }
 .search{
-  position: fixed;
-  height: 10%;
+  position:fixed;
+  height: 29%;
   width: 50%;
   background-color: black;
   z-index: 9999;

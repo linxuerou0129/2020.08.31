@@ -39,7 +39,7 @@
                         <el-avatar :size="35" :src="item.collection_user_avatar" style="margin-left:10px;margin-right:10px"></el-avatar>
                         <div class="row">
                             <strong style="margin-right:5px">{{item.collection_user_name}}</strong>
-                            <p style="margin-right:5px">收藏了</p><strong style="color:#b1b2bb;margin-right:20px">"{{item.article_title}}"</strong>
+                            <p style="margin-right:5px">赞了</p><strong style="color:#b1b2bb;margin-right:20px">"{{item.article_title}}"</strong>
                         </div>
                         <p class="gray">{{item.time}}</p>
                     </div>

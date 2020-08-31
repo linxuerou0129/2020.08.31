@@ -31,19 +31,7 @@
                 </el-card>
             </el-tab-pane>
             <el-tab-pane label="收藏我的">
-                <el-card 
-                shadow="never" 
-                v-for="(item,index) in collectList"
-                :key="index" style="height:50px">
-                    <div class="row" style="height:15px">
-                        <el-avatar :size="35" :src="item.collection_user_avatar" style="margin-left:10px;margin-right:10px"></el-avatar>
-                        <div class="row">
-                            <strong style="margin-right:5px">{{item.collection_user_name}}</strong>
-                            <p style="margin-right:5px">收藏了</p><strong style="color:#b1b2bb;margin-right:20px">"{{item.article_title}}"</strong>
-                        </div>
-                        <p class="gray">{{item.time}}</p>
-                    </div>
-                </el-card>
+
             </el-tab-pane>
             <el-tab-pane label="评论我的">
                 <el-collapse>
@@ -91,8 +79,7 @@ export default {
         return{
             pinglunList:[],
             replyList:[],
-            zanList:[],
-            collectList:[]
+            zanList:[]
         }
     },
     methods:{
@@ -142,21 +129,6 @@ export default {
                      this.zanList[i].thumb_user_avatar="http://106.75.157.168:5657/api"+this.zanList[i].thumb_user_avatar;
                  }
                  console.log(this.zanList)
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-        axios({
-            url:'http://106.75.157.168:5657/api/collect_me_list',
-	            method: 'get'
-            })
-            .then((response)=>{
-                 console.log(response.data);
-                 this.collectList=response.data.collect_me_users;
-                 for(let i=0;i<this.collectList.length;i++){
-                     this.collectList[i].collection_user_avatar="http://106.75.157.168:5657/api"+this.collectList[i].collection_user_avatar;
-                 }
-                 console.log(this.collectList)
             })
             .catch(function(error){
                 console.log(error);
