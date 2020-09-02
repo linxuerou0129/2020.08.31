@@ -125,10 +125,9 @@ export default {
             restaurants: [],
             money:0,
             radio:'0',
+            place:'',
             scenics:'',
             option:[],
-            province:"",
-            city:"",
             country:[/*{
     			　　label: '热门国家',
     			　　options: [,]
@@ -340,7 +339,7 @@ export default {
                 image:this.image,
                 text:this.textarea,
                 title:this.tittle,
-                position:this.province+this.city+this.scenics,
+                position:this.place+this.scenics,
                 start:this.data+"",
                 days:this.dayNum+"天",
                 people:this.people,
@@ -354,15 +353,15 @@ export default {
             console.log(error);
           });
       },
-	    onChangeProvince(a){
+	  onChangeProvince(a){
         console.log(a) 
-        this.province= a.value
+        this.place = a.value
       },    
       onChangeCity(a){
         console.log(a)  
-		    //let name=(a.value).substring(0,2);
-		    let name=a.value;
-		    axios.post('http://106.75.157.168:5657/api/get_scenic_list', {
+		//let name=(a.value).substring(0,2);
+		let name=a.value;
+		axios.post('http://106.75.157.168:5657/api/get_scenic_list', {
                 city:name
             })
           .then((response)=> {
@@ -372,7 +371,7 @@ export default {
           .catch(function (error) {
             console.log(error);
           });
-        this.city = name;
+        this.place = this.place+name;
       },
       querySearch(queryString, cb) {
         var restaurants = this.restaurants;

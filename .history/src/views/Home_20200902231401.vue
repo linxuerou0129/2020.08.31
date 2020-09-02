@@ -5,7 +5,7 @@
       <el-carousel-item 
       v-for="(item,index) in list"
       :key="index">
-        <div @click="hrefArticle(item.id)" style="width:100%;height:100%">
+        <div @click="hrefArticle(item.id)">
           <div class="head">
             <strong>{{item.title}}</strong>
             <p style="font-size: 16px;">-- {{item.author}}</p>
@@ -90,7 +90,7 @@ export default {
   width: auto;
   height: 100%;
   display: table;
-  margin: 0 auto;
+            margin: 0 auto;
 }
 .head{
   z-index: 999;

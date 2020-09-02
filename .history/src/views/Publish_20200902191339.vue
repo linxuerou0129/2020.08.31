@@ -125,6 +125,7 @@ export default {
             restaurants: [],
             money:0,
             radio:'0',
+            place:'',
             scenics:'',
             option:[],
             province:"",

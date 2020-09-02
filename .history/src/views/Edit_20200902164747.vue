@@ -334,7 +334,7 @@ export default {
   },
    created(){
       axios({
-            url:'http://106.75.157.168:5657/api/getinfo2',
+            url:'http://106.75.157.168:5657/api/getinfo2/',
 	            method: 'get'
             })
             .then((response)=>{

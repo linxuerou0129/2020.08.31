@@ -4,14 +4,13 @@
     <el-carousel :interval="5000" direction="vertical" height="500px">
       <el-carousel-item 
       v-for="(item,index) in list"
-      :key="index">
-        <div @click="hrefArticle(item.id)" style="width:100%;height:100%">
-          <div class="head">
-            <strong>{{item.title}}</strong>
-            <p style="font-size: 16px;">-- {{item.author}}</p>
-          </div>
-          <img class="photo" :src="item.image">
+      :key="index"
+      @click="hrefArticle(item.id)">
+        <div class="head">
+          <strong>{{item.title}}</strong>
+          <p style="font-size: 16px;">-- {{item.author}}</p>
         </div>
+        <img class="photo" :src="item.image">
       </el-carousel-item>
     </el-carousel>
     </div>
@@ -90,7 +89,7 @@ export default {
   width: auto;
   height: 100%;
   display: table;
-  margin: 0 auto;
+            margin: 0 auto;
 }
 .head{
   z-index: 999;
