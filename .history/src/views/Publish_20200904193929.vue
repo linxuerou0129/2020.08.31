@@ -396,9 +396,6 @@ export default {
           }
         }
       },
-      preText (pretext) {
-　　　　return pretext.replace(/\n|\r\n/g, "\\n");
-      },
 	    onChangeProvince(a){
         console.log(a) 
         this.province= a.value;

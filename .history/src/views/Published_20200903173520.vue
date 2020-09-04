@@ -29,38 +29,25 @@
                 <div>
                     <el-card 
                     class="single" 
-                    shadow="always"
+                    shadow="hover"
                     v-for="(item,index) in comName"
                     :key="index">
                         <div style="display: -webkit-flex; /* Safari */
                             display: flex;
-                            flex-direction: row;align-items: center;">
-                            <el-image 
-                            @click="hrefArticle(item.article_id)"
+                            flex-direction: row;" 
+                            @click="hrefArticle(item.article_id)">
+                            <el-image
                             style="width: 390px; height: 130px;background-color: #f5f7fa;"
                             :src="item.image"
-                            fit="contain"
-                            class="image">
+                            fit="contain">
                             </el-image>
                             <div class="hide">
-                                <h4 class="tittle" 
-                                @click="hrefArticle(item.article_id)">
-                                    {{item.article_title}}
-                                </h4>
+                                <h4>{{item.article_title}}</h4>
                                 <div class="bottom">
-                                    <p class="small">发布于 {{item.time}}</p>
+                                    <img src="../assets/dingwei.png" width="20" height="20">
+                                    <p class="small" style="margin-left:20px;">{{item.time}}</p>
                                 </div>
                             </div>
-                            <el-popconfirm
-                            title="确定删除这一文章吗？"
-                            @onConfirm="deleteIt(item,index)">
-                                <el-button 
-                                type="danger" 
-                                icon="el-icon-delete" 
-                                style="height:40px;margin-left:10px;"
-                                 slot="reference" 
-                                circle></el-button>
-                            </el-popconfirm>
                         </div>
                     </el-card>
                 </div>
@@ -78,7 +65,6 @@
 </template>
 
 <script>
-import { Message } from 'element-ui';
 import axios from 'axios'
 export default {
     data(){
@@ -101,32 +87,6 @@ export default {
         hrefArticle(a){
             console.log(a);
             location.href="/Show?article_id="+a
-        },
-        deleteIt(item,index){
-            console.log(index,this.comName.length);
-            axios({
-            url:'http://106.75.157.168:5657/api/del_article',
-              method: 'DELETE',
-              data:{
-                article_id:item.article_id
-              }
-            })
-            .then((response)=>{
-              console.log(response.data);
-              if(response.data.status=="success"){
-                for(let i=index;i<this.comName.length;i++){
-                    this.comName[i]=this.comName[i+1];
-                }
-                this.comName.pop();
-                Message.success('删除成功');
-              }
-              else{
-                Message.error('删除失败');
-              }
-            })
-            .catch(function(error){
-                console.log(error);
-            });
         }
     },
     created(){
@@ -158,21 +118,6 @@ export default {
 </script>
 
 <style scoped>
-.image:hover{
-    opacity:0.7;
-}
-.tittle:hover{
-    color:#f8b600;
-}
-.row{
-    display: -webkit-flex; /* Safari */
-    display: flex;
-    flex-direction: row;
-}
-.small{
-     color:#b1b2bb;
-    font-size: 11px;   
-}
 .bottom{
     bottom: 0;
     display: -webkit-flex; /* Safari */

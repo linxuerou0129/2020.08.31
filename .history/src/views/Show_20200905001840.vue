@@ -65,7 +65,7 @@
             <el-input
             type="textarea"
             class="putIn"
-            :rows="4"
+            :autosize="{ minRows: 2, maxRows: 5}"
             placeholder="登录后方可评论"
             v-model="comment"
             maxlength="200"
@@ -167,12 +167,6 @@ export default {
                     type: 'warning'
                 });
             }
-            else if(this.isLogin==false){
-                this.$message({
-                    message: '登录后方可评论',
-                    type: 'warning'
-                });
-            }
             else{
                 axios.post('http://106.75.157.168:5657/api/comment', {
                     article_id:this.article_id,
@@ -241,33 +235,25 @@ export default {
             return(false);
         },
         collectIt(){
-            if(this.isLogin==true){
-                axios.post('http://106.75.157.168:5657/api/collect', {
-                    article_id:this.article_id
-                })
-                .then((response) =>{
-                    console.log(response.data)
-                    if(response.data.status=="add"){
-                        this.type1="primary";
-                        this.collect="el-icon-star-on";
-                        this.collection+=1;
-                    }
-                    else{
-                        this.type1="",
-                        this.collect="el-icon-star-off";
-                        this.collection-=1;
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            }
-            else{
-                this.$message({
-                    message: '登录后方可收藏',
-                    type: 'warning'
-                });
-            }
+            axios.post('http://106.75.157.168:5657/api/collect', {
+                article_id:this.article_id
+              })
+            .then((response) =>{
+                console.log(response.data)
+                if(response.data.status=="add"){
+                    this.type1="primary";
+                    this.collect="el-icon-star-on";
+                    this.collection+=1;
+                }
+                else{
+                    this.type1="",
+                    this.collect="el-icon-star-off";
+                    this.collection-=1;
+                }
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         },
         addCom:function(){
             this.comName.push({
@@ -376,7 +362,6 @@ export default {
     justify-content: flex-end;
     word-wrap:break-word;
     word-break:break-all;
-    height: 110px;
 }
 .action{
     display: -webkit-flex; /* Safari */

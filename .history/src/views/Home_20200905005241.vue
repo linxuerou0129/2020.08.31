@@ -77,6 +77,7 @@ export default {
   width: 50%;
   background-color: black;
   z-index: 9999;
+  opacity: 0.5;
   top: 80%;
   left: 25%;
   border-radius: 5px;

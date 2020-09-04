@@ -7,7 +7,7 @@
                 <p class="gray">{{data.time}}</p>
               </div>
          </div>
-            <p class="comment" style="white-space: pre-wrap;">{{data.comment}}</p>
+            <p class="comment">{{data.comment}}</p>
             <div id="reDe">
               <div @click="reply" style="width:5%;margin-left:1%;margin-bottom:1%">
                 <p class="gray">回复</p>
@@ -27,7 +27,7 @@
             </div>
             <div style="height:auto" class="reply" v-for="(item,i) in data.replies" :key="i">
               <div v-show="i<2||show">
-                <p style="white-space: pre-wrap;">{{data.replies[i].reply}}</p>
+                <p>{{data.replies[i].reply}}</p>
                 <div id="NTTwo">
                   <p style="color:#77c1d1">--{{data.replies[i].name}}</p>
                   <p class="gray2">{{data.replies[i].time}}</p>
@@ -54,7 +54,6 @@ import axios from 'axios'
 export default {
    data() {
       return {
-        isLogin:false,
         ifDel:true,
         name:'1111111',
         messData:'',
@@ -103,8 +102,7 @@ export default {
         this.replyIn=!this.replyIn;
       },
       send:function(){
-        if(this.isLogin==true){
-                axios.post('http://106.75.157.168:5657/api/reply', {
+            axios.post('http://106.75.157.168:5657/api/reply', {
                     comment_id:this.data.id,
                     text:this.messData
                 })
@@ -118,30 +116,21 @@ export default {
                             id:response.data.reply_id
                         });
                         this.$message({
-                            message: '回复成功',
+                            message: '评论成功',
                             type: 'success'
                         });
-                      this.messData="";
                     }
                     else{
-                        this.$message.error('回复失败');
+                        this.$message.error('评论失败');
                     }
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-            }
-            else{
-                this.$message({
-                    message: '登录后方可回复',
-                    type: 'warning'
-                });
-            }
         },
       deleteIt:function(){
-        if(this.isLogin==true){
-            axios({
-              url:'http://106.75.157.168:5657/api/del_comment',
+        axios({
+            url:'http://106.75.157.168:5657/api/del_comment',
               method: 'DELETE',
               data:{
                 id:this.data.id
@@ -160,19 +149,11 @@ export default {
             .catch(function(error){
                 console.log(error);
             });
-        }
-        else{
-          this.$message({
-            message: '登录后方可删除',
-            type: 'warning'
-          });
-        }
       },
       deleteReply:function(i){
-        if(this.isLogin==true){
-            console.log(this.data.replies[i].id);
-            axios({
-              url:'http://106.75.157.168:5657/api/del_reply',
+          console.log(this.data.replies[i].id);
+          axios({
+            url:'http://106.75.157.168:5657/api/del_reply',
               method: 'DELETE',
               data:{
                 id:this.data.replies[i].id
@@ -193,13 +174,6 @@ export default {
             .catch(function(error){
                 console.log(error);
             });
-        }
-        else{
-          this.$message({
-            message: '登录后方可删除',
-            type: 'warning'
-          });
-        }
       }
     },
     watch:{
@@ -216,7 +190,6 @@ export default {
                 console.log(response.data);
                 this.user_id=response.data.用户id;
                 this.name=response.data.用户名;
-                this.isLogin=true;
             })
             .catch(function(error){
                 console.log(error);

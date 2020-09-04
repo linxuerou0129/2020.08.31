@@ -3,9 +3,12 @@
     <el-card class="card">
       <el-tabs tab-position="left">
         <el-tab-pane label="用户信息设置">
-          <el-form status-icon :rules="rules" ref="edit">
+          <el-form status-icon >
             <p>修改个人信息</p>
-            <el-form-item label="用户昵称" prop="name">
+            <el-form-item label="用户昵称" :rules="[
+            {message: '请输入用户昵称', trigger: 'blur' },
+            { min: 4, max: 16, message: '长度在 4 到 16 个字符', trigger: 'blur' }
+          ]">
               <el-input v-model="edit.name"></el-input>
             </el-form-item>
             <el-form-item label="性别">
@@ -170,12 +173,6 @@ export default {
         }
       };
     return{
-      rules: {
-          name:[
-            { required: true, message: '请输入用户昵称', trigger: 'blur' },
-            { min: 4, max: 16, message: '长度在 4 到 16 个字符', trigger: 'blur' }
-          ],
-        },
       edit:{
         name:"",
         sex:"保密"

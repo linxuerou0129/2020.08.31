@@ -26,7 +26,7 @@
                     <span>我的游记</span>
                     <el-button style="float: right; padding: 3px 0" type="text" @click="hrefPublish">写游记</el-button>
                 </div>
-                <div>
+                <div class="row">
                     <el-card 
                     class="single" 
                     shadow="always"
@@ -57,8 +57,7 @@
                                 <el-button 
                                 type="danger" 
                                 icon="el-icon-delete" 
-                                style="height:40px;margin-left:10px;"
-                                 slot="reference" 
+                                style="height:40px;margin-left:10px;" 
                                 circle></el-button>
                             </el-popconfirm>
                         </div>

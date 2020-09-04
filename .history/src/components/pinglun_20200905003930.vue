@@ -169,10 +169,9 @@ export default {
         }
       },
       deleteReply:function(i){
-        if(this.isLogin==true){
-            console.log(this.data.replies[i].id);
-            axios({
-              url:'http://106.75.157.168:5657/api/del_reply',
+          console.log(this.data.replies[i].id);
+          axios({
+            url:'http://106.75.157.168:5657/api/del_reply',
               method: 'DELETE',
               data:{
                 id:this.data.replies[i].id
@@ -193,13 +192,6 @@ export default {
             .catch(function(error){
                 console.log(error);
             });
-        }
-        else{
-          this.$message({
-            message: '登录后方可删除',
-            type: 'warning'
-          });
-        }
       }
     },
     watch:{

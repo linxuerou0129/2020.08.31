@@ -65,7 +65,6 @@
             <el-input
             type="textarea"
             class="putIn"
-            :rows="4"
             placeholder="登录后方可评论"
             v-model="comment"
             maxlength="200"
@@ -376,7 +375,6 @@ export default {
     justify-content: flex-end;
     word-wrap:break-word;
     word-break:break-all;
-    height: 110px;
 }
 .action{
     display: -webkit-flex; /* Safari */

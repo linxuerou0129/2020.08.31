@@ -26,43 +26,37 @@
                     <span>我的游记</span>
                     <el-button style="float: right; padding: 3px 0" type="text" @click="hrefPublish">写游记</el-button>
                 </div>
-                <div>
+                <div class="row">
                     <el-card 
                     class="single" 
-                    shadow="always"
+                    shadow="hover"
                     v-for="(item,index) in comName"
-                    :key="index">
+                    :key="index"
+                    style="width:90%">
                         <div style="display: -webkit-flex; /* Safari */
                             display: flex;
-                            flex-direction: row;align-items: center;">
-                            <el-image 
-                            @click="hrefArticle(item.article_id)"
+                            flex-direction: row;" 
+                            @click="hrefArticle(item.article_id)">
+                            <el-image
                             style="width: 390px; height: 130px;background-color: #f5f7fa;"
                             :src="item.image"
-                            fit="contain"
-                            class="image">
+                            fit="contain">
                             </el-image>
                             <div class="hide">
-                                <h4 class="tittle" 
-                                @click="hrefArticle(item.article_id)">
-                                    {{item.article_title}}
-                                </h4>
+                                <h4>{{item.article_title}}</h4>
                                 <div class="bottom">
                                     <p class="small">发布于 {{item.time}}</p>
+                                    <img 
+                                    src="../assets/shanchu.png" 
+                                    width="17" 
+                                    height="17" 
+                                    style="margin-left:15px;"
+                                    @click="deleteIt(item,index)">
                                 </div>
                             </div>
-                            <el-popconfirm
-                            title="确定删除这一文章吗？"
-                            @onConfirm="deleteIt(item,index)">
-                                <el-button 
-                                type="danger" 
-                                icon="el-icon-delete" 
-                                style="height:40px;margin-left:10px;"
-                                 slot="reference" 
-                                circle></el-button>
-                            </el-popconfirm>
                         </div>
                     </el-card>
+                    <el-button type="danger" icon="el-icon-delete" style="height:40px" circle></el-button>
                 </div>
             </el-card>
         </div>
@@ -78,7 +72,6 @@
 </template>
 
 <script>
-import { Message } from 'element-ui';
 import axios from 'axios'
 export default {
     data(){
@@ -103,7 +96,6 @@ export default {
             location.href="/Show?article_id="+a
         },
         deleteIt(item,index){
-            console.log(index,this.comName.length);
             axios({
             url:'http://106.75.157.168:5657/api/del_article',
               method: 'DELETE',
@@ -117,7 +109,6 @@ export default {
                 for(let i=index;i<this.comName.length;i++){
                     this.comName[i]=this.comName[i+1];
                 }
-                this.comName.pop();
                 Message.success('删除成功');
               }
               else{
@@ -158,12 +149,6 @@ export default {
 </script>
 
 <style scoped>
-.image:hover{
-    opacity:0.7;
-}
-.tittle:hover{
-    color:#f8b600;
-}
 .row{
     display: -webkit-flex; /* Safari */
     display: flex;

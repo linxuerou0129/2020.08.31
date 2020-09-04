@@ -3,7 +3,7 @@
     <el-card class="card">
       <el-tabs tab-position="left">
         <el-tab-pane label="用户信息设置">
-          <el-form status-icon :rules="rules" ref="edit">
+          <el-form status-icon :rules="rules">
             <p>修改个人信息</p>
             <el-form-item label="用户昵称" prop="name">
               <el-input v-model="edit.name"></el-input>

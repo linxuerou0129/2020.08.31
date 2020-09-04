@@ -65,7 +65,7 @@
             <el-input
             type="textarea"
             class="putIn"
-            :rows="4"
+            :autosize="{ minRows: 2, maxRows: 5}"
             placeholder="登录后方可评论"
             v-model="comment"
             maxlength="200"
@@ -167,12 +167,6 @@ export default {
                     type: 'warning'
                 });
             }
-            else if(this.isLogin==false){
-                this.$message({
-                    message: '登录后方可评论',
-                    type: 'warning'
-                });
-            }
             else{
                 axios.post('http://106.75.157.168:5657/api/comment', {
                     article_id:this.article_id,
@@ -264,7 +258,7 @@ export default {
             }
             else{
                 this.$message({
-                    message: '登录后方可收藏',
+                    message: '登录后方可点赞',
                     type: 'warning'
                 });
             }
@@ -376,7 +370,6 @@ export default {
     justify-content: flex-end;
     word-wrap:break-word;
     word-break:break-all;
-    height: 110px;
 }
 .action{
     display: -webkit-flex; /* Safari */

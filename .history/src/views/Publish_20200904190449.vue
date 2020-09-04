@@ -36,8 +36,7 @@
             v-model="data"
             type="date"
             value-format="yyyy-MM-dd"
-            placeholder="选择出发日期"
-            :picker-options="pickerOptions">
+            placeholder="选择出发日期">
             </el-date-picker>
           </div>
           <div>
@@ -112,11 +111,6 @@ export default {
 	components: { VDistpicker },
     data(){
         return{
-          pickerOptions: {
-            disabledDate(time) {
-              return time.getTime() > Date.now();
-            },
-          },
             tittle:'',
             showDialog:false,
             dialogImageUrl: '',
@@ -135,7 +129,6 @@ export default {
             option:[],
             province:"",
             city:"",
-            place:"",
             country:[/*{
     			　　label: '热门国家',
     			　　options: [,]
@@ -349,34 +342,11 @@ export default {
         else if(this.textarea==""){
           this.$message.error('请输入正文！');
         }
-        else if(this.image==""){
+        else if(this.image==[]){
           this.$message.error('请上传至少一张图片！');
         }
-        else if(this.place==""){
-          this.$message.error('请选择目的地！');
-        }
         else{
-          if(this.province==""){
-            axios.post('http://106.75.157.168:5657/api/publish', {
-                image:this.image,
-                text:this.textarea,
-                title:this.tittle,
-                position:this.place,
-                start:this.data+"",
-                days:this.dayNum+"天",
-                people:this.people,
-                pay:this.money+"元"
-            })
-            .then((response)=> {
-              console.log(response.data);
-              location.href="/Show?article_id="+response.data.id;
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-          }
-          else{
-            axios.post('http://106.75.157.168:5657/api/publish', {
+          axios.post('http://106.75.157.168:5657/api/publish', {
                 image:this.image,
                 text:this.textarea,
                 title:this.tittle,
@@ -386,23 +356,18 @@ export default {
                 people:this.people,
                 pay:this.money+"元"
             })
-            .then((response)=> {
-              console.log(response.data);
-              location.href="/Show?article_id="+response.data.id;
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-          }
+          .then((response)=> {
+            console.log(response.data);
+            location.href="/Show?article_id="+response.data.id;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
         }
-      },
-      preText (pretext) {
-　　　　return pretext.replace(/\n|\r\n/g, "\\n");
       },
 	    onChangeProvince(a){
         console.log(a) 
-        this.province= a.value;
-        this.place=this.province;
+        this.province= a.value
       },    
       onChangeCity(a){
         console.log(a)  
@@ -419,7 +384,6 @@ export default {
             console.log(error);
           });
         this.city = name;
-        this.place=this.province+this.city;
       },
       querySearch(queryString, cb) {
         var restaurants = this.restaurants;

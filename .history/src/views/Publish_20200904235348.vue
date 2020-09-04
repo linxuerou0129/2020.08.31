@@ -337,6 +337,7 @@ export default {
     },
     methods:{
       publish(){
+        this.textarea=this.preText(this.textarea);
         for(let i=0;i<this.fileList.length;i++){
            this.image.push({
                 image:"http://106.75.157.168:5657/api"+this.fileList[i].response.icon
@@ -397,7 +398,7 @@ export default {
         }
       },
       preText (pretext) {
-　　　　return pretext.replace(/\n|\r\n/g, "\\n");
+　　　　return pretext.replace(/\r\n/g, '<br/>').replace(/\n/g, '<br/>').replace(/\s/g, '&nbsp;');
       },
 	    onChangeProvince(a){
         console.log(a) 

@@ -36,8 +36,7 @@
             v-model="data"
             type="date"
             value-format="yyyy-MM-dd"
-            placeholder="选择出发日期"
-            :picker-options="pickerOptions">
+            placeholder="选择出发日期">
             </el-date-picker>
           </div>
           <div>
@@ -112,11 +111,6 @@ export default {
 	components: { VDistpicker },
     data(){
         return{
-          pickerOptions: {
-            disabledDate(time) {
-              return time.getTime() > Date.now();
-            },
-          },
             tittle:'',
             showDialog:false,
             dialogImageUrl: '',
@@ -395,9 +389,6 @@ export default {
             });
           }
         }
-      },
-      preText (pretext) {
-　　　　return pretext.replace(/\n|\r\n/g, "\\n");
       },
 	    onChangeProvince(a){
         console.log(a) 

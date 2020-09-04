@@ -54,7 +54,6 @@ import axios from 'axios'
 export default {
    data() {
       return {
-        isLogin:false,
         ifDel:true,
         name:'1111111',
         messData:'',
@@ -103,8 +102,7 @@ export default {
         this.replyIn=!this.replyIn;
       },
       send:function(){
-        if(this.isLogin==true){
-                axios.post('http://106.75.157.168:5657/api/reply', {
+            axios.post('http://106.75.157.168:5657/api/reply', {
                     comment_id:this.data.id,
                     text:this.messData
                 })
@@ -130,18 +128,10 @@ export default {
                 .catch(function (error) {
                     console.log(error);
                 });
-            }
-            else{
-                this.$message({
-                    message: '登录后方可回复',
-                    type: 'warning'
-                });
-            }
         },
       deleteIt:function(){
-        if(this.isLogin==true){
-            axios({
-              url:'http://106.75.157.168:5657/api/del_comment',
+        axios({
+            url:'http://106.75.157.168:5657/api/del_comment',
               method: 'DELETE',
               data:{
                 id:this.data.id
@@ -160,19 +150,11 @@ export default {
             .catch(function(error){
                 console.log(error);
             });
-        }
-        else{
-          this.$message({
-            message: '登录后方可删除',
-            type: 'warning'
-          });
-        }
       },
       deleteReply:function(i){
-        if(this.isLogin==true){
-            console.log(this.data.replies[i].id);
-            axios({
-              url:'http://106.75.157.168:5657/api/del_reply',
+          console.log(this.data.replies[i].id);
+          axios({
+            url:'http://106.75.157.168:5657/api/del_reply',
               method: 'DELETE',
               data:{
                 id:this.data.replies[i].id
@@ -193,13 +175,6 @@ export default {
             .catch(function(error){
                 console.log(error);
             });
-        }
-        else{
-          this.$message({
-            message: '登录后方可删除',
-            type: 'warning'
-          });
-        }
       }
     },
     watch:{
@@ -216,7 +191,6 @@ export default {
                 console.log(response.data);
                 this.user_id=response.data.用户id;
                 this.name=response.data.用户名;
-                this.isLogin=true;
             })
             .catch(function(error){
                 console.log(error);

@@ -337,6 +337,7 @@ export default {
     },
     methods:{
       publish(){
+        this.textarea=this.preText(this.textarea);
         for(let i=0;i<this.fileList.length;i++){
            this.image.push({
                 image:"http://106.75.157.168:5657/api"+this.fileList[i].response.icon

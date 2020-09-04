@@ -376,7 +376,6 @@ export default {
     justify-content: flex-end;
     word-wrap:break-word;
     word-break:break-all;
-    height: 110px;
 }
 .action{
     display: -webkit-flex; /* Safari */

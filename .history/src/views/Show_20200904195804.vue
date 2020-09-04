@@ -65,7 +65,7 @@
             <el-input
             type="textarea"
             class="putIn"
-            :rows="4"
+            :autosize="{ minRows: 2, maxRows: 5}"
             placeholder="登录后方可评论"
             v-model="comment"
             maxlength="200"
@@ -130,13 +130,12 @@ export default {
             comName:[],
             avatar:"",
             user_id:Number,
-            name:"",
-            isLogin:false
+            name:""
         }
     },
     methods:{
         hrefImg:function(a){
-            window.open(a);
+            window.open("http://www.jb51.net");
         },
         getDatetime:function() {
             var now = new Date();
@@ -167,12 +166,6 @@ export default {
                     type: 'warning'
                 });
             }
-            else if(this.isLogin==false){
-                this.$message({
-                    message: '登录后方可评论',
-                    type: 'warning'
-                });
-            }
             else{
                 axios.post('http://106.75.157.168:5657/api/comment', {
                     article_id:this.article_id,
@@ -194,7 +187,6 @@ export default {
                             message: '评论成功',
                             type: 'success'
                         });
-                        this.comment="";
                     }
                     else{
                         this.$message.error('评论失败');
@@ -206,30 +198,22 @@ export default {
             }
         },
         zanIt(){
-            if(this.isLogin==true){
-                axios.post('http://106.75.157.168:5657/api/thumb', {
-                    id:this.article_id
-                })
-                .then((response) =>{
-                    if(response.data.status=="add"){
-                        this.type2="primary";
-                        this.thumb+=1;
-                    }
-                    else{
-                        this.type2=""; 
-                        this.thumb-=1;
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            }
-            else{
-                this.$message({
-                    message: '登录后方可点赞',
-                    type: 'warning'
-                });
-            }
+            axios.post('http://106.75.157.168:5657/api/thumb', {
+                id:this.article_id
+              })
+            .then((response) =>{
+                if(response.data.status=="add"){
+                    this.type2="primary";
+                    this.thumb+=1;
+                }
+                else{
+                    this.type2=""; 
+                    this.thumb-=1;
+                }
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         },
         getQueryVariable(variable){
             var query = window.location.search.substring(1);
@@ -241,33 +225,25 @@ export default {
             return(false);
         },
         collectIt(){
-            if(this.isLogin==true){
-                axios.post('http://106.75.157.168:5657/api/collect', {
-                    article_id:this.article_id
-                })
-                .then((response) =>{
-                    console.log(response.data)
-                    if(response.data.status=="add"){
-                        this.type1="primary";
-                        this.collect="el-icon-star-on";
-                        this.collection+=1;
-                    }
-                    else{
-                        this.type1="",
-                        this.collect="el-icon-star-off";
-                        this.collection-=1;
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            }
-            else{
-                this.$message({
-                    message: '登录后方可收藏',
-                    type: 'warning'
-                });
-            }
+            axios.post('http://106.75.157.168:5657/api/collect', {
+                article_id:this.article_id
+              })
+            .then((response) =>{
+                console.log(response.data)
+                if(response.data.status=="add"){
+                    this.type1="primary";
+                    this.collect="el-icon-star-on";
+                    this.collection+=1;
+                }
+                else{
+                    this.type1="",
+                    this.collect="el-icon-star-off";
+                    this.collection-=1;
+                }
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         },
         addCom:function(){
             this.comName.push({
@@ -289,7 +265,6 @@ export default {
                 this.avatar="http://106.75.157.168:5657/api"+response.data.头像;
                 this.user_id=response.data.用户id;
                 this.name=response.data.用户名;
-                this.isLogin=true;
             })
             .catch(function(error){
                 console.log(error);
@@ -353,7 +328,8 @@ export default {
 
 <style scoped>
 .mostly{
-    white-space: pre-wrap;
+    word-wrap:break-word;
+    word-break:break-all; 
 }
 .sendI{
     position: relative;
@@ -376,7 +352,6 @@ export default {
     justify-content: flex-end;
     word-wrap:break-word;
     word-break:break-all;
-    height: 110px;
 }
 .action{
     display: -webkit-flex; /* Safari */

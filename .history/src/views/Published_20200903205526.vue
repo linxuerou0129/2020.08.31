@@ -26,7 +26,7 @@
                     <span>我的游记</span>
                     <el-button style="float: right; padding: 3px 0" type="text" @click="hrefPublish">写游记</el-button>
                 </div>
-                <div>
+                <div class="row">
                     <el-card 
                     class="single" 
                     shadow="always"
@@ -51,16 +51,12 @@
                                     <p class="small">发布于 {{item.time}}</p>
                                 </div>
                             </div>
-                            <el-popconfirm
-                            title="确定删除这一文章吗？"
-                            @onConfirm="deleteIt(item,index)">
-                                <el-button 
-                                type="danger" 
-                                icon="el-icon-delete" 
-                                style="height:40px;margin-left:10px;"
-                                 slot="reference" 
-                                circle></el-button>
-                            </el-popconfirm>
+                            <el-button 
+                            type="danger" 
+                            icon="el-icon-delete" 
+                            style="height:40px;margin-left:10px;" 
+                            @click="deleteIt(item,index)"
+                            circle></el-button>
                         </div>
                     </el-card>
                 </div>
@@ -103,7 +99,7 @@ export default {
             location.href="/Show?article_id="+a
         },
         deleteIt(item,index){
-            console.log(index,this.comName.length);
+            console.log(index,this.comName.lengthsss);
             axios({
             url:'http://106.75.157.168:5657/api/del_article',
               method: 'DELETE',
@@ -117,7 +113,6 @@ export default {
                 for(let i=index;i<this.comName.length;i++){
                     this.comName[i]=this.comName[i+1];
                 }
-                this.comName.pop();
                 Message.success('删除成功');
               }
               else{
